@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Smart Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="nav">
+    <ul>
+        <li><a href="homepage.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+    </ul>
+</div>
+<div id="mainRegister" >
+    <div id="welcomeMessage" class="center">
+        <h2>Welcome to Pet Smart Manager</h2>
+    </div>
+    <div id="registerForm">
+        <form action="action_page.php" method="post">
+            <div class="imgcontainer">
+                <img id="avatar" src="avatars/nilo-ren.jpg" alt="Choose Avatar" class="avatar">
+                <img id="avatar" src="avatars/nilo-ren.jpg" alt="Choose Avatar" class="avatar">
+                <img id="avatar" src="avatars/nilo-ren.jpg" alt="Choose Avatar" class="avatar">
+                <img id="avatar" src="avatars/nilo-ren.jpg" alt="Choose Avatar" class="avatar">
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+                <br>
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+
+                <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+<div id="footer">
+    <p>PET SMART MANAGER 2022</p>
+</div>
+</body>
+</html>
