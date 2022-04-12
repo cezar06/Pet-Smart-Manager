@@ -233,6 +233,9 @@ html{
     margin-right: auto;
     width: 60%;
   }
+  .boxed {
+    padding: 50px 300px 50px 50px;
+  }
 
 
 
