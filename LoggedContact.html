@@ -3,9 +3,10 @@
     <meta charset="UTF-8">
     <title>Pet Smart Manager</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div id="nav">
+  <div id="nav">
     <ul>
         <li><a href="LoggedHomepage.html">Home</a></li>
         <li><a href="LoggedAbout.html">About</a></li>
@@ -13,58 +14,37 @@
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="homepage.html">Logout</a></li>
     </ul>
-</div>
-<div class="about-section">
-    <h1>About us</h1>
-    <p>
-        This website provides you a better management of your pets.
-    </p>
-</div>
+  </div>
 
-<h2 style="text-align:center">Our Team</h2>
-<div class="row">
-  <div class="column">
-    <div class="card">
-      <img src="images/rares_poza.jpg" alt="Rares" style="width:100%">
-      <div class="container">
-        <h2 style="text-align:center">Cires Rares</h2>
-        <p style="text-align:center" class="title">Founder</p>
-        <p style="text-align:center">I like turtles.</p>
-        <p style="text-align:center">rarescires@gmail.com</p>
-        <p style="text-align:center"><button class="button2">Contact</button></p>
-      </div>
+  <div class="page-body">
+    <div class="contact-section">
+        <br>
+        <h2 style="text-align:center"><br>Let's talk</h2>
+        <p style="text-align:center">
+            Do you have some big ideas, a random message or any kind of feedback for our website? 
+            <br>
+            Then please reach out, we would love to hear more about you, your idea and how we can help!
+        </p>
+    </div>
+
+    <div>
+        <form class="contact-form">      
+            <input name="name" type="text" class="contact-data" placeholder="Name" />   
+            <input name="email" type="text" class="contact-data" placeholder="Email" />
+            <textarea name="text" class="contact-data" placeholder="Comment"></textarea>
+            <br>
+            <input type="submit" class="contact-data" value="SUBMIT"/>
+        </form>
+    </div>
+
+    <div class="contact-data">
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-instagram"></a>
     </div>
   </div>
 
-  <div class="column">
-    <div class="card2">
-      <img src="images/vlad_poza.jpg" alt="Vlad" style="width:100%">
-      <div class="container">
-        <h2 style="text-align:center">Vlad Sarghe</h2>
-        <p style="text-align:center" class="title">Founder</p>
-        <p style="text-align:center">I like bears.</p>
-        <p style="text-align:center">sargheandreivlad@gmail.com</p>
-        <p style="text-align:center"><button class="button2">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card3">
-      <img src="images/cezar_poza.jpg" alt="Cezar" style="width:100%">
-      <div class="container">
-        <h2 style="text-align:center">Tudor Cezar</h2>
-        <p style="text-align:center" class="title">Founder</p>
-        <p style="text-align:center">I like birds.</p>
-        <p style="text-align:center">tudor.cezar01@gmail.com</p>
-        <p style="text-align:center"><button class="button2">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-</div>
   <div id="footer">
     <p>PET SMART MANAGER 2022</p>
-    </div>
+  </div>
 </body>
 </html>
