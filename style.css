@@ -89,16 +89,17 @@ body {
 }
 
 #footer {
-    position: fixed;
     text-align: center;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: #333;
     color: white;
+    position:fixed;
+    height:40px;
 }
 
-form {
+.form {
     border: 3px solid #f1f1f1;
 }
 
@@ -308,4 +309,12 @@ html{
     margin: auto;
     width: 50%;
     padding-top: 50px;
+}
+.viewButton{
+    margin: 0;
+padding: 0;
+}
+
+#dashboard{
+    margin-bottom: 35px;
 }
