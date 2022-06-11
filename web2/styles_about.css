@@ -7,7 +7,7 @@
 .row{
 display: flex;
 flex-direction: column;
-margin-left: 39%;
+margin-left: 40%;
 margin-right: auto;
 width: 60%;
 }
@@ -21,11 +21,15 @@ width: 60%;
     text-align: center;
     cursor: pointer;
     width: 47%;
-  }  
+  }
+  .button2:hover{
+    background: #271e0b;
+    transition: all 0.3s ease;
+}  
   .about-section {
-    padding: 20px;
+    padding: 10px;
     text-align: center;
-    background-color: #1f2634;
+    background-color: #543e2b;
     color: rgb(255, 255, 255);
   }
 
