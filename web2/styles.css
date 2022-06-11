@@ -3,9 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Kumbh Sans', sans-serif;
-
 }
-
 .navbar{
     background: #d28f79;
     height: 80px;
@@ -129,7 +127,7 @@
         opacity: 1;
         transition: all 0.6s ease;
         z-index: 99;
-        height: 50vh;
+        height: 80vh;
         font-size: 1.5rem;
     }
 
@@ -197,9 +195,8 @@
 /* main section */
 .main {
     background-color: #fefaf1 ;
-  }
-  
-  .main__container {
+}
+.main__container {
     display: grid;
     padding-right: 50px;
     padding-left: 50px;
@@ -212,14 +209,14 @@
     z-index: 1;
     width: 100%;
     max-width: 1300px;
-  }
+}
   
-  .main__content {
+.main__content {
     color: #d28f79;
     width: 100%;
-  }
+}
   
-  .main__content h1 {
+.main__content h1 {
     font-size: 4rem;
     background-color: #ff8177;
     background-image: linear-gradient(to top, #be9a80  0%, #d28f79   100%);
@@ -229,9 +226,9 @@
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
     background-clip: text;
-  }
+}
   
-  .main__content h2 {
+.main__content h2 {
     font-size: 4rem;
     margin-top: 10px;
     background-color: #ff8177;
@@ -242,15 +239,15 @@
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
     background-clip: text;
-  }
+}
   
-  .main__content p {
+.main__content p {
     margin-top: 1rem;
     font-size: 2rem;
     font-weight: 700;
-  }
+}
   
-  .main__button {
+.main__button {
     font-size: 1rem;
     color: #fff;
     background-image: linear-gradient(to top, #a4836b  0%, #d28f79   100%);
@@ -262,16 +259,16 @@
     outline: none;
     cursor: pointer;
     position: relative;
-  }
+}
   
-  .main__button a {
+.main__button a {
     position: relative;
     z-index: 2;
     color: #fff;
     text-decoration: none;
-  }
+}
   
-  .main__button:after {
+.main__button:after {
     position: absolute;
     content: '';
     top: 0;
@@ -281,21 +278,28 @@
     height: 100%;
     background: #d28f79;
     transition: all 0.4s;
-  }
+}
   
-  .main__button:hover {
+.main__button:hover {
     color: #d28f79;
-  }
+}
   
-  .main__button:hover:after {
+.main__button:hover:after {
     width: 100%;
-  }
+}
   
-  .main__img--container {
+.main__img--container {
     text-align: center;
-  }
+}
   
-  #main__img {
+#main__img {
     height: 80%;
     width: 80%;
-  }
+}
+
+
+body{
+    background-color: #fefaf1;
+
+}
+
