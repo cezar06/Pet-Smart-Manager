@@ -104,6 +104,19 @@
 
 @media screen and (max-width: 960px)
 {
+    .button2 {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 5px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        font-size: 8;
+        width: 47%;
+      }
+
     .navbar__container{
         padding: 0;
     }
@@ -301,5 +314,15 @@
 body{
     background-color: #fefaf1;
 
+}
+#footer {
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    position:fixed;
+    height:20px;
 }
 
