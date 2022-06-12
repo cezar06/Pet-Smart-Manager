@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    display: none;
 }
 
 .modal-content{
@@ -17,6 +18,7 @@
     border-radius: 4px;
     text-align: center;
     padding: 10px;
+    position: relative;
 }
 
 input{
@@ -80,7 +82,7 @@ input{
 }
 
 .image-grid{
-    --gap: 16px;
+    --gap: 50px;
     --num-cols: 3;
     --row-height: 300px;
 
@@ -94,6 +96,7 @@ input{
 }
 .pet__item{
     text-align: center;
+   
 }
 
 .pet__item > img {
@@ -101,8 +104,40 @@ input{
     height: auto;
     object-fit: cover;
 }
-
+.image__grid > img{
+    width: 70%;
+    height: auto;
+    object-fit: cover;
+}
 .pet__name{
     color:#d28f79;
     font-size: 1.5rem;
 }
+
+.close{
+    position:absolute;
+    top: 0;
+    right: 14px;
+    font-size: 42px;
+    transform: rotate(45deg);
+    cursor: pointer;
+
+}
+
+.div-shadow{
+    width:5em;
+    height: 2em;
+    background-color: #000000;
+}
+
+:root {
+    --clr-primary: #2962ff;
+    --clr-primary-hover: #0d47a1;
+    --clr-gray-med: #78909c;
+    --clr-gray-light: #cfd8dc;
+  }
+  #display-image{
+    height: 280px;
+    background-position: center;
+    background-size: cover;
+  }
