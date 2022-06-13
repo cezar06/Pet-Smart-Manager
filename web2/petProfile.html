@@ -73,6 +73,14 @@
         <p>PET SMART MANAGER 2022</p>
     </div>
       
-    <script src="app.js"></script>
+    <script>
+        const menu = document.querySelector("#mobile-menu");
+        const menuLinks = document.querySelector(".navbar__menu");
+    
+        menu.addEventListener("click", function () {
+          menu.classList.toggle("is-active");
+          menuLinks.classList.toggle("active");
+        });
+      </script>
 </body>
 </html>
