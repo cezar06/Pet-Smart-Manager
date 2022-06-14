@@ -8,7 +8,6 @@ if (!isset($_SESSION['petnames'])) {
 if (!isset($_SESSION['petimages'])) {
     $_SESSION['petimages'] = array();
 }
-$test=0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +57,6 @@ $test=0;
           <li class="navbar__button">
             <a href="#" class="button" id="LogIn">Log In</a>
           </li>
-
         </ul>
       </div>
     </nav>
@@ -74,26 +72,25 @@ $test=0;
       </ul>
       <div class="image-grid">
          <?php 
-            if(isset($_POST['final']))
-                  {  
-                     $pdo = new PDO('sqlite:database.db');
-                     $statement = $pdo->prepare("INSERT INTO Pets (owner, petname, image) VALUES (:owner, :petname, :image)");
-                     $statement->execute(array(
-                        ':owner' => "placeholder",
-                        ':petname' => $_POST['pettnameform'],
-                        ':image' => file_get_contents($_FILES["file"]["tmp_name"])
-                     ));
-                  }
-            $pdo = new PDO('sqlite:database.db');
-         
-            $statement = $pdo->query("SELECT * FROM Pets");
-         
-            while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-               echo '<div class="pet__item">';
-               echo '<a href="petProfile.html"><img src="data:image/png;base64,' . base64_encode($row['image']) . '" id="display-image" class="display-image2"></a>';
-               echo '<p class="pet__name">'.$row['petname'].'</p>';
-               echo '</div>';
-            }
+         $pdo = new PDO('sqlite:database.db');
+         if(isset($_POST['final']))
+               {  
+                  
+                  $statement = $pdo->prepare("INSERT INTO Pets (owner, petname, image) VALUES (:owner, :petname, :image)");
+                  $statement->execute(array(
+                     ':owner' => "placeholder",
+                     ':petname' => $_POST['pettnameform'],
+                     ':image' => file_get_contents($_FILES["file"]["tmp_name"])
+                  ));
+                  //insert a message saying that the pet was added 
+               }
+         $statement = $pdo->query("SELECT * FROM Pets");
+         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            echo '<div class="pet__item">';
+            echo '<a href="petProfile.php?value='.$row['petname'].'"><img src="data:image/png;base64,' . base64_encode($row['image']) . '" id="display-image" class="display-image2"></a>';
+            echo '<p class="pet__name">'.$row['petname'].'</p>';
+            echo '</div>';
+         }
          ?>
       </div>
         </div>
@@ -102,13 +99,16 @@ $test=0;
             <div class="close">+</div>
             <p class="simple-text">Add a pet!</p>
             <form method="post" enctype='multipart/form-data'>
-               <input id="nume" type="text" placeholder="Name" name="pettnameform" /><br />
+               <input id="nume" type="text" placeholder="Name" name="pettnameform" required/><br />
                <input
                   id="imagine"
                   type="file"
-                  accept="image/jpeg, image/png, image/jpg"
+                  accept="image/*"
                   name="file"
+                  required
                   />
+                  <?php 
+                  ?>
                <input type="submit" name="final">
             </form>
          </div>
@@ -130,7 +130,6 @@ $test=0;
             </form> 
          </div>
       </div>
-
       <div class="Register-modal">
          <div class="Remodal-content">
             <div class="close" id = "close2">+</div>
@@ -175,7 +174,7 @@ $test=0;
       <p>PET SMART MANAGER 2022</p>
       </div>
       
-      <script src="database.db"></script>
+       <script src="database.db"></script>
       <script>
          document.getElementById("addpet").addEventListener("click", function () {
          document.querySelector(".bg-modal").style.display = "flex";
@@ -184,7 +183,6 @@ $test=0;
          document.querySelector(".bg-modal").style.display = "none";
          });
       </script>
-
       <script>
          document.getElementById("LogIn").addEventListener("click", function () {
          document.querySelector(".LogIn-modal").style.display = "flex";
@@ -193,7 +191,6 @@ $test=0;
          document.querySelector(".LogIn-modal").style.display = "none";
          });
       </script>
-
       <script>
          document.getElementById("Register").addEventListener("click", function () {
          document.querySelector(".Register-modal").style.display = "flex";
@@ -202,7 +199,11 @@ $test=0;
          document.querySelector(".Register-modal").style.display = "none";
          });
       </script>
-      
+      <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+   </script>
       </div>
       </div>
    </body>

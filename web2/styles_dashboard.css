@@ -152,8 +152,6 @@ input{
     transform: rotate(45deg);
     cursor: pointer;
 }
-
-
 .div-shadow{
     width:5em;
     height: 2em;
@@ -173,4 +171,3 @@ input{
     object-fit: cover;
     width: 70%;
   }
-  
