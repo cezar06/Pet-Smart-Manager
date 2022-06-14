@@ -1,14 +1,3 @@
-<?php
-session_start();
-//if session v ariable array 'petnames' is not set, set it to an empty array
-if (!isset($_SESSION['petnames'])) {
-    $_SESSION['petnames'] = array();
-}
-//if session variable array 'petimages' is not set, set it to an empty array
-if (!isset($_SESSION['petimages'])) {
-    $_SESSION['petimages'] = array();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +19,74 @@ if (!isset($_SESSION['petimages'])) {
     />
   </head>
    <body>
+
+   <?php 
+   $dupUser=0;
+   $pdo = new PDO('sqlite:database.db');
+            if(isset($_POST['submittest']))
+                  {  
+                     function debug_to_console($data) {
+                        $output = $data;
+                        if (is_array($output))
+                            $output = implode(',', $output);
+                    
+                        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+                    }
+                    if ($_POST['password'] !== $_POST['Repassword']){   //parola e diferita de reconfirm parola
+                           echo "<div class='isa_error' id='warning'>
+                           <i class='fa fa-times-circle'></i>
+                           Passwords are not the same.
+                           </div>
+                           <script>
+                           setTimeout(function(){
+                              document.getElementById('warning').style.display = 'none';
+                              },3000);
+                              </script>";
+                    }
+                    else{
+                        $statement = $pdo->prepare(
+                           "SELECT * FROM Users"
+                        );
+                        
+                        $statement->execute();
+                        
+                        while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+                           if ($row['username'] === $_POST['username']){
+                              echo "<div class='isa_error' id='warning'>
+                              <i class='fa fa-times-circle'></i>
+                              Username already exists.
+                              </div>
+                              <script>
+                              setTimeout(function(){
+                                 document.getElementById('warning').style.display = 'none';
+                                 },3000);
+                                 </script>";
+                              $dupUser=1;
+                           }
+                              
+                        }
+                        if ($dupUser === 0){
+                           $statement = $pdo->prepare(
+                              "INSERT INTO Users (username, password) VALUES (:username, :password)"
+                           );
+                           $statement->execute([
+                                 ":username" => $_POST["username"],
+                                 ":password" => $_POST["password"]
+                           ]);
+                           echo "<div class='isa_success' id='succes'>
+                              <i class='fa fa-times-circle'></i>
+                              Account created successfully!
+                              </div>
+                              <script>
+                              setTimeout(function(){
+                                 document.getElementById('succes').style.display = 'none';
+                                 },3000);
+                                 </script>";
+                        }
+                    }
+                  }
+         ?>
+
    <nav class="navbar">
       <div class="navbar__container">
         <a href="/" id="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
@@ -40,16 +97,16 @@ if (!isset($_SESSION['petimages'])) {
         </div>
         <ul class="navbar__menu">
           <li class="navbar__item">
-            <a href="./index.html" class="navbar__links">Home</a>
+            <a href="./index.php" class="navbar__links">Home</a>
           </li>
           <li class="navbar__item">
             <a href="./dashboard.php" class="navbar__links">Dashboard</a>
           </li>
           <li class="navbar__item">
-            <a href="./About.html" class="navbar__links">About</a>
+            <a href="./About.php" class="navbar__links">About</a>
           </li>
           <li class="navbar__item">
-              <a href="./Contact.html" class="navbar__links">Contact Us</a>
+              <a href="./Contact.php" class="navbar__links">Contact Us</a>
           </li>
           <li class="navbar__button">
             <a href="#" class="button" id="Register">Register</a>
@@ -153,22 +210,13 @@ if (!isset($_SESSION['petimages'])) {
          </div>
       </div>
       
-      <?php 
-            if(isset($_POST['submittest']))
-                  {  
-                     function debug_to_console($data) {
-                        $output = $data;
-                        if (is_array($output))
-                            $output = implode(',', $output);
-                    
-                        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-                    }
-                    if ($_POST['password'] !== $_POST['Repassword']){
-                     debug_to_console("nu");
-                    }
-                    else debug_to_console("dada");
-                  }
-         ?>
+      
+
+      <script>
+         if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+         }
+      </script>   
 
       <div id="footer">
       <p>PET SMART MANAGER 2022</p>

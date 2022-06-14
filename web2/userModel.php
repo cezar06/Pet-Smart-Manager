@@ -8,13 +8,17 @@ function credentialsExist($user, $pass){
         echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
     }*/
 
-    $pdo = new PDO('sqlite:database.db');
-    $statement = $pdo->query('SELECT * FROM Users');
-    while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-        if ($row['username'] === $user && $row['password'] === $pass)
+        $pdo = new PDO('sqlite:database.db');
+        $statement = $pdo->prepare(
+            "SELECT * FROM Users"
+        );
+        
+        $statement->execute();
+        
+        while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+            if ($row['username'] === $user && $row['password'] === $pass)
             return true;
-     }
+        }
      return false;
 }
-
 ?>

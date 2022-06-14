@@ -211,16 +211,16 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="./index.html" class="navbar__links">Home</a>
+                    <a href="./index.php" class="navbar__links">Home</a>
                 </li>
                 <li class="navbar__item">
                     <a href="./dashboard.php" class="navbar__links">Dashboard</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="./About.html" class="navbar__links">About</a>
+                    <a href="./About.php" class="navbar__links">About</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="./Contact.html" class="navbar__links">Contact Us</a>
+                    <a href="./Contact.php" class="navbar__links">Contact Us</a>
                 </li>
                 <li class="navbar__button">
                     <a href="/" class="button">Register</a>

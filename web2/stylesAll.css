@@ -326,3 +326,23 @@ body{
     height:20px;
 }
 
+.isa_success, .isa_error {
+    padding:10px;
+    border-radius:.9em;
+    position:relative;
+    text-align: center;
+    }
+    .isa_success {
+        color: #4F8A10;
+        background-color: #DFF2BF;
+    }
+    
+    .isa_error {
+        color: #D8000C;
+        background-color: #FFD2D2;
+    }
+    .isa_success i, .isa_error i {
+        margin:10px 22px;
+        font-size:2em;
+        vertical-align:middle;
+    }
