@@ -2,6 +2,7 @@
       session_start();
       $_SESSION['logged_in_user_id'];
       $_SESSION['fail_to_login'];
+      $_SESSION['contor_login'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +34,10 @@
       {
         $_SESSION['logged_in_user_id'] = '0';
       }
+      if (!isset($_SESSION['logged_in_user_id']))
+      {
+        $_SESSION['contor_login'] = '0';
+      }
       if ($_SESSION['fail_to_login'] == '1'){
         echo "<div class='isa_error' id='warning'>
               <i class='fa fa-times-circle'></i>
@@ -44,7 +49,8 @@
                   },3000);
                   </script>";
         $_SESSION['fail_to_login'] = '0';
-      }else{
+      }else if ($_SESSION['logged_in_user_id'] == '1' && $_SESSION['contor_login'] == '1'){
+        $_SESSION['contor_login']++;
         echo "<div class='isa_success' id='succes'>
               <i class='fa fa-times-circle'></i>
               Login Successful!
@@ -78,12 +84,21 @@
           <li class="navbar__item">
               <a href="./Contact.php" class="navbar__links">Contact Us</a>
           </li>
-          <li class="navbar__button">
-            <a href="/" class="button">Register</a>
-          </li>
-          <li class="navbar__button">
-            <a href="/" class="button">Log In</a>
-          </li>
+          <?php
+            if ($_SESSION['logged_in_user_id'] == '0'){
+              echo "<li class='navbar__button'>
+              <a href='/' class='button'>Register</a>
+            </li>
+            <li class='navbar__button'>
+              <a href='/' class='button'>Log In</a>
+            </li>";
+            }else{
+              echo "<li class='navbar__button'>
+              <a href='/' class='button'>Log Out</a>
+            </li>";
+            }
+          ?>
+          
         </ul>
       </div>
     </nav>

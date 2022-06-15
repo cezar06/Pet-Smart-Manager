@@ -21,6 +21,7 @@
    <body>
 
    <?php 
+   session_start();
    $dupUser=0;
    $pdo = new PDO('sqlite:database.db');
             if(isset($_POST['submittest']))
@@ -108,12 +109,20 @@
           <li class="navbar__item">
               <a href="./Contact.php" class="navbar__links">Contact Us</a>
           </li>
-          <li class="navbar__button">
-            <a href="#" class="button" id="Register">Register</a>
-          </li>
-          <li class="navbar__button">
-            <a href="#" class="button" id="LogIn">Log In</a>
-          </li>
+          <?php
+            if ($_SESSION['logged_in_user_id'] == '0'){
+              echo "<li class='navbar__button'>
+              <a href='/' class='button'>Register</a>
+            </li>
+            <li class='navbar__button'>
+              <a href='/' class='button'>Log In</a>
+            </li>";
+            }else{
+              echo "<li class='navbar__button'>
+              <a href='/' class='button'>Log Out</a>
+            </li>";
+            }
+          ?>
         </ul>
       </div>
     </nav>
