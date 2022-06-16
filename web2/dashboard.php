@@ -136,22 +136,37 @@
                </li>
             </ul>
             <div class="image-grid">
-               <?php 
+               <?php
                   $pdo = new PDO('sqlite:database.db');
                   if(isset($_POST['final']))
                         {  
-                           $statement = $pdo->prepare("INSERT INTO Pets (owner, petname, image) VALUES (:owner, :petname, :image)");
+                           //check if pet already exists for 'login_user'. If it does, display an alert
+                           $statement = $pdo->prepare(
+                               "SELECT * FROM Pets WHERE petname = :pet_name AND owner = :user_id"
+                           );
+                           $statement->execute([
+                               ":pet_name" => $_POST["pettnameform"],
+                               ":user_id" => $_SESSION['login_user']
+                           ]);                           
+                           $result = $statement->fetchAll();
+                           //print the statement in the console
+                           if(count($result) > 0)
+                           {
+                              echo "<script>alert('Pet already exists');</script>";
+                           }
+                           else
+                           {
+                              $statement = $pdo->prepare("INSERT INTO Pets (owner, petname, image) VALUES (:owner, :petname, :image)");
                            $statement->execute(array(
-                              ':owner' => "placeholder",
+                              ':owner' => $_SESSION['login_user'],
                               ':petname' => $_POST['pettnameform'],
                               ':image' => file_get_contents($_FILES["file"]["tmp_name"])
                            ));
-                           //insert a message saying that the pet was added 
-                        }
-                  $statement = $pdo->query("SELECT * FROM Pets");
+                        }}
+                  $statement = $pdo->query("SELECT * FROM Pets WHERE owner = '".$_SESSION['login_user']."'");
                   while($row = $statement->fetch(PDO::FETCH_ASSOC)){
                      echo '<div class="pet__item">';
-                     echo '<a href="petProfile.php?value='.$row['petname'].'"><img src="data:image/png;base64,' . base64_encode($row['image']) . '" id="display-image" class="display-image2"></a>';
+                     echo '<a href="petProfile.php?value='.$row['petname'].'&amp;user='.$_SESSION['login_user'].'"><img src="data:image/png;base64,' . base64_encode($row['image']) . '" id="display-image" class="display-image2"></a>';
                      echo '<p class="pet__name">'.$row['petname'].'</p>';
                      echo '</div>';
                   }
@@ -265,6 +280,13 @@
         menuLinks.classList.toggle("active");
       });
     </script>
+
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+
 
    </body>
 </html>

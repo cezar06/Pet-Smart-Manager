@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-<title>Important Moments for aaaa</title>
-<link> http://localhost/web2/petProfile.php?value=aaaa </link>
-<description>Here you can see all important moments that aaaa has had</description>
+<title>Important Moments for pet1cezar</title>
+<link> http://localhost/web2/petProfile.php?value=pet1cezar&amp;user=cezar </link>
+<description>Here you can see all important moments that pet1cezar has had</description>
 <language >en-US </language>
-<item>
-<title>2022-06-01</title>
-<description>aaaa</description>
-<link>http://localhost/web2/petProfile.php?value=aaaa</link>
-</item>
-<item>
-<title>2022-06-01</title>
-<description>aaa</description>
-<link>http://localhost/web2/petProfile.php?value=aaaa</link>
-</item>
-<item>
-<title>2022-06-01</title>
-<description>moment important</description>
-<link>http://localhost/web2/petProfile.php?value=aaaa</link>
-</item>
 </channel>
 </rss>

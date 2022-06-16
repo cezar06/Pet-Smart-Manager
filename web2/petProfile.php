@@ -3,6 +3,15 @@
 ?>
 
 <?php
+//if Session_logged_user is 0, then redirect to index.php
+if ($_SESSION['logged_in_user'] == 0){
+    header ("location: index.php");
+    exit;
+}
+if ($_SESSION['login_user'] != $_GET['user']){
+    header ("location: index.php");
+    exit;
+}
 $pdo = new PDO("sqlite:database.db");
 if (isset($_POST["send-event"])) {
     $year = date("Y", strtotime($_POST["event-date"]));
@@ -14,7 +23,7 @@ if (isset($_POST["send-event"])) {
         "INSERT INTO Calendar (username, year, month, day, text, petname, type) VALUES (:username, :year, :month, :day, :text, :petname, :type)"
     );
     $statement->execute([
-        ":username" => "placeholder",
+        ":username" => $_SESSION['login_user'],
         ":year" => $year,
         ":month" => $month,
         ":day" => $day,
@@ -32,7 +41,7 @@ if (!empty($_POST["delete"]) && is_array($_POST["delete"])) {
             "DELETE FROM Calendar WHERE username = :username AND year = :year AND month = :month AND day = :day AND petname = :petname"
         );
         $statement->execute([
-            ":username" => "placeholder",
+            ":username" => $_SESSION['login_user'],
             ":year" => $year,
             ":month" => $month,
             ":day" => $day,
@@ -107,7 +116,7 @@ $statement = $pdo->prepare(
 );
 
 $statement->execute([
-    ":username" => "placeholder",
+    ":username" => $_SESSION['login_user'],
     ":petname" => $pet_id,
 ]);
 $rows = [];
@@ -138,7 +147,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
     $week .= "</p>";
     //if day is single digit, create a new variable with a zero in front of it
     if ($day < 10) {
-        $daywithzero = "0" . $day;
+        $day = "0" . $day;
     }
     $week .=
         '<form method="post">
@@ -147,7 +156,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
         "-" .
         $month .
         "-" .
-        $daywithzero .
+        $day .
         ']" class="btn-link-delete">Delete</button> </form>';
     //iterate through the rows array
     foreach ($rows as $row) {
@@ -259,6 +268,9 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
                     <?php
 
 $web_url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+if (strpos($web_url, "&") !== false) {
+    $web_url = str_replace("&", "&amp;", $web_url);
+}
 
 $str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 $str .= "<rss version=\"2.0\">\n";
@@ -273,13 +285,15 @@ $pdo = new PDO("sqlite:database.db");
 $statement = $pdo->prepare("SELECT * FROM Calendar WHERE type = 'Life Event' ORDER BY year, month, day desc");
 $statement->execute();
 $rows = $statement->fetchAll();
+//if web_url contains character &, replace it with &amp;
+
 foreach ($rows as $row) {
     $str .= "<item>\n";
     //title = date
     $str .= "<title>" . $row["year"] . "-" . $row["month"] . "-" . $row["day"] . "</title>\n";
     $str .= "<description>" . $row["text"] . "</description>\n";
     //link
-    $str .= "<link>" . $web_url . "</link>\n";
+    $str .= "<link>" . htmlspecialchars($web_url) . "</link>\n";
     $str .= "</item>\n";
 }
 $str .= "</channel>\n";
@@ -307,9 +321,9 @@ file_put_contents("rss.xml", $str);
     <div class="containerr">
         <div class="calendar-header">
         <ul class="list-inline">
-            <li id="top-of-calendar"class="list-inline-item"><a href="?ym=<?= $prev ?>&value=<?= $pet_id ?>#topofpage" class="btn btn-link">&lt; prev</a></li>
+            <li id="top-of-calendar"class="list-inline-item"><a href="?ym=<?= $prev ?>&value=<?= $pet_id ?>&user=<?=$_SESSION['login_user']?>#topofpage" class="btn btn-link">&lt; prev</a></li>
             <li class="list-inline-item"><span class="title"><?= $title ?></span></li>
-            <li class="list-inline-item"><a href="?ym=<?= $next ?>&value=<?= $pet_id ?>#topofpage" class="btn btn-link">next &gt;</a></li>
+            <li class="list-inline-item"><a href="?ym=<?= $next ?>&value=<?= $pet_id ?>&user=<?=$_SESSION['login_user']?>#topofpage" class="btn btn-link">next &gt;</a></li>
             
         </ul>
         <div class="calendar-button">
