@@ -2,23 +2,23 @@
 <rss version="2.0">
 <channel>
 <title>Important Moments for aaaa</title>
-<link> http://localhost/Pet-Smart-Manager-main/web70000/petProfile.php?value=aaaa </link>
+<link> http://localhost/web2/petProfile.php?value=aaaa </link>
 <description>Here you can see all important moments that aaaa has had</description>
 <language >en-US </language>
 <item>
 <title>2022-06-01</title>
 <description>aaaa</description>
-<link>http://localhost/Pet-Smart-Manager-main/web70000/petProfile.php?value=aaaa</link>
+<link>http://localhost/web2/petProfile.php?value=aaaa</link>
 </item>
 <item>
 <title>2022-06-01</title>
 <description>aaa</description>
-<link>http://localhost/Pet-Smart-Manager-main/web70000/petProfile.php?value=aaaa</link>
+<link>http://localhost/web2/petProfile.php?value=aaaa</link>
 </item>
 <item>
 <title>2022-06-01</title>
 <description>moment important</description>
-<link>http://localhost/Pet-Smart-Manager-main/web70000/petProfile.php?value=aaaa</link>
+<link>http://localhost/web2/petProfile.php?value=aaaa</link>
 </item>
 </channel>
 </rss>

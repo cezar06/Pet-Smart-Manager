@@ -80,8 +80,8 @@
                 }
             }
           }
-  ?>
-
+   ?>
+      <!--Navbar-->
       <nav class="navbar">
          <div class="navbar__container">
             <a href="/" id="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>

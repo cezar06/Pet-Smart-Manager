@@ -1,3 +1,7 @@
+<?php //pornim sesiunea
+      session_start();
+?>
+
 <?php
 $pdo = new PDO("sqlite:database.db");
 if (isset($_POST["send-event"])) {
@@ -200,37 +204,38 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
 <body>
     <!--Navbar-->
     <nav class="navbar">
-        <div class="navbar__container">
-            <a href="/" id="navbar__logo">
-                <i class="fa-solid fa-cat"></i>PSM
-            </a>
+         <div class="navbar__container">
+            <a href="/" id="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
             <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+               <span class="bar"></span>
+               <span class="bar"></span>
+               <span class="bar"></span>
             </div>
             <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <a href="./index.php" class="navbar__links">Home</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="./dashboard.php" class="navbar__links">Dashboard</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="./About.php" class="navbar__links">About</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="./Contact.php" class="navbar__links">Contact Us</a>
-                </li>
-                <li class="navbar__button">
-                    <a href="/" class="button">Register</a>
-                </li>
-                <li class="navbar__button">
-                    <a href="/" class="button">Log in</a>
-                </li>
+               <li class="navbar__item">
+                  <a href="./index.php" class="navbar__links">Home</a>
+               </li>
+               <?php
+                  if ($_SESSION['logged_in_user'] == '1'){
+                     echo "<li class='navbar__item'>
+                        <a href='./dashboard.php' class='navbar__links'>Dashboard</a>
+                     </li>";
+                  }
+               ?>
+               <li class="navbar__item">
+                  <a href="./About.php" class="navbar__links">About</a>
+               </li>
+               <li class="navbar__item">
+                  <a href="./Contact.php" class="navbar__links">Contact Us</a>
+               </li>
+               <?php
+                  echo "<form action='logOut.php' method='post'><li class='navbar__button'>
+                  <button class='button' name = 'Logout' type = 'submit'><a class='button' id = 'LogOut'>Log Out</a></button>
+                  </li></form>";
+               ?>
             </ul>
-        </div>
-    </nav>
+         </div>
+      </nav>
     <!--a section to display data about the pet-->
     <div class="profile-container">
         <div class="profile-details">
@@ -374,6 +379,46 @@ file_put_contents("rss.xml", $str);
             </div>
          </div>
       </div>
+
+      <div class="LogIn-modal">
+         <div class="modal-content">
+            <div class="close" id = "close">+</div>
+            <a id="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+            <form action="controller.php" method="post"> 
+               <p><label for="username">Username:</label>
+                     <input type="text" name="username" id="username" size="20" 
+                     placeholder="Provide an username:" required/></p>
+               <p><label for="password">Password:</label> 
+                     <input type="password" name="password" id="password" size="20"
+                     placeholder="Password" required/></p>
+               <p><input type="submit" name ="submit" value="Log In"
+                  title="Apasati butonul pentru a expedia datele spre server" /></p>
+            </form> 
+         </div>
+      </div>
+
+      <div class="Register-modal">
+         <div class="Remodal-content">
+          <div class="close" id = "close2">+</div>
+          <a id="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+              <form method="post" enctype='multipart/form-data'>
+                <p><label for="username">Username:</label>
+                      <input type="text" name="username" id="Regiusername" size="20" 
+                      placeholder="Provide an username:" required/></p>
+
+                <p><label for="password">Password:</label> 
+                      <input type="password" name="password" id="Regipassword" size="20"
+                      placeholder="Password" required/></p>
+
+                <p><label for="password">Retype password:</label> 
+                <input type="password" name="Repassword" id="ReRegipassword" size="20"
+                placeholder="Re-type password" required/></p>
+                <p><input type="submit" name ="submitRegister" value="Register"
+                    title="Apasati butonul pentru a expedia datele spre server" /></p>
+              </form>     
+         </div>
+      </div>
+      
     <div id="footer">
         <p>PET SMART MANAGER 2022</p>
     </div>
