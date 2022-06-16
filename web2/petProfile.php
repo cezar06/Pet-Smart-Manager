@@ -251,6 +251,40 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
                         <?php echo "<h3>" . $pet_id . "</h3>"; ?>
                         <button name="edit" class="button" id="see-info">See Info</button>
                     </div>
+                    <?php
+
+$web_url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+$str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+$str .= "<rss version=\"2.0\">\n";
+$str .= "<channel>\n";
+$str .= "<title>Important Moments for " . $pet_id . "</title>\n";
+$str .= "<link> $web_url </link>\n";
+$str .= "<description>Here you can see all important moments that " . $pet_id . " has had</description>\n";
+$str .= "<language >en-US </language>\n";
+//connect to sqlite database
+$pdo = new PDO("sqlite:database.db");
+//get all "text" from table Calendar where "type" is "Life Event" using a prepared statement, in chronological order
+$statement = $pdo->prepare("SELECT * FROM Calendar WHERE type = 'Life Event' ORDER BY year, month, day desc");
+$statement->execute();
+$rows = $statement->fetchAll();
+foreach ($rows as $row) {
+    $str .= "<item>\n";
+    //title = date
+    $str .= "<title>" . $row["year"] . "-" . $row["month"] . "-" . $row["day"] . "</title>\n";
+    $str .= "<description>" . $row["text"] . "</description>\n";
+    //link
+    $str .= "<link>" . $web_url . "</link>\n";
+    $str .= "</item>\n";
+}
+$str .= "</channel>\n";
+$str .= "</rss>\n";
+file_put_contents("rss.xml", $str);
+?>
+<a href = "rss.xml" target = "_blank">
+    <img src="images/Feed-icon.svg.png" style="width: 25px;">
+</a>
+
                 </div>
             </div>
         </div>
