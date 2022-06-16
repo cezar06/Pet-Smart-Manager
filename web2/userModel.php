@@ -1,4 +1,5 @@
 <?php
+//session_start();
 function credentialsExist($user, $pass){
     /*function debug_to_console($data) {
         $output = $data;

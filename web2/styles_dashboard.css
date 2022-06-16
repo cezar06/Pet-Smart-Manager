@@ -1,68 +1,3 @@
-.bg-modal{
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-}
-
-.LogIn-modal{
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-}
-
-.Register-modal{
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-}
-
-.Remodal-content{
-    width:500px;
-    height: 300px;
-    background-color: white;
-    border-radius: 4px;
-    text-align: center;
-    padding: 10px;
-    position: relative;
-}
-
-.modal-content{
-    width:500px;
-    height: 200px;
-    background-color: white;
-    border-radius: 4px;
-    text-align: center;
-    padding: 10px;
-    position: relative;
-}
-
-input{
-    width: 50%;
-    display: block;
-    margin: 10px auto;
-}
-
 .dashboard{
     background-color: #fefaf1 ;
 }
@@ -144,14 +79,7 @@ input{
     font-size: 1.5rem;
 }
 
-.close{
-    position:absolute;
-    top: 0;
-    right: 14px;
-    font-size: 42px;
-    transform: rotate(45deg);
-    cursor: pointer;
-}
+
 .div-shadow{
     width:5em;
     height: 2em;
