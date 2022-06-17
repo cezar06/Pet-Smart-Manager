@@ -181,7 +181,7 @@
     <div class="LogIn-modal">   
       <div class="modal-content">
           <div class="close" id = "close">+</div>
-          <a id="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+          <a class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
           <form action="controller.php" method="post"> 
             <p><label for="username">Username:</label>
                   <input type="text" name="username" id="username" size="20" 

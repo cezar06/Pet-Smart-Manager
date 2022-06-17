@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-<title>Important Moments for shiu</title>
-<link> http://localhost/web2/petProfile.php?value=shiu&amp;user=cezar </link>
-<description>Here you can see all important moments that shiu has had</description>
+<title>Important Moments for dadad</title>
+<link> http://localhost/web3/petProfile.php?value=dadad&amp;user=cezar </link>
+<description>Here you can see all important moments that dadad has had</description>
 <language >en-US </language>
-<item>
-<title>1970-01-01</title>
-<description></description>
-<link>http://localhost/web2/petProfile.php?value=shiu&amp;amp;user=cezar</link>
-</item>
-<item>
-<title>1970-01-01</title>
-<description></description>
-<link>http://localhost/web2/petProfile.php?value=shiu&amp;amp;user=cezar</link>
-</item>
 </channel>
 </rss>

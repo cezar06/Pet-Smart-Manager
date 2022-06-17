@@ -31,10 +31,7 @@
     background-color: #fefaf1 ;
     background-image: linear-gradient(to top, #ebbe9e  0%, #fbedd0  100%);
     background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
+    color:transparent;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -234,11 +231,8 @@
     background-color: #ff8177;
     background-image: linear-gradient(to top, #be9a80  0%, #d28f79   100%);
     background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
     background-clip: text;
+    color:transparent;
 }
   
 .main__content h2 {
@@ -247,10 +241,6 @@
     background-color: #ff8177;
     background-image: linear-gradient(to top, #a4836b  0%, #d28f79   100%);
     background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
     background-clip: text;
 }
   

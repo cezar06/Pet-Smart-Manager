@@ -91,7 +91,7 @@
   <!--Navbar-->
   <nav class="navbar">
       <div class="navbar__container">
-        <a href="/" id="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+        <a href="/" class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
         <div class="navbar__toggle" id="mobile-menu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -142,12 +142,12 @@
     </div>
 
     <div>
-        <form class="contact-form">      
+        <form class="contact-form" id="contact-form-id">      
             <input name="name" type="text" class="contact-data" placeholder="Name" />   
             <input name="email" type="text" class="contact-data" placeholder="Email" />
             <textarea name="text" class="contact-data" placeholder="Comment"></textarea>
             <br>
-            <input type="submit" class="contact-data" value="SUBMIT"/>
+            <input type="submit" class="contact-data" value="SUBMIT" name="submit-feedback" id="submit-feedback-id"/>
         </form>
     </div>
 
@@ -160,7 +160,7 @@
   <div class="LogIn-modal">   
       <div class="modal-content">
           <div class="close" id = "close">+</div>
-          <a id="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+          <a class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
           <form action="controller.php" method="post"> 
             <p><label for="username">Username:</label>
                   <input type="text" name="username" id="username" size="20" 
@@ -177,7 +177,7 @@
     <div class="Register-modal">
         <div class="Remodal-content">
           <div class="close" id = "close2">+</div>
-          <a id="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+          <a class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
               <form method="post" enctype='multipart/form-data'>
                 <p><label for="username">Username:</label>
                       <input type="text" name="username" id="Regiusername" size="20" 
@@ -231,6 +231,24 @@
       menu.classList.toggle("is-active");
       menuLinks.classList.toggle("active");
     });
+  </script>
+  <script>
+      document.querySelector('#contact-form-id').addEventListener('submit', e=>{
+          e.preventDefault();
+          let form = document.querySelector('#contact-form-id');
+          const data = new URLSearchParams();
+          for(const p of new FormData(form)){
+              data.append(p[0], p[1]);
+          }
+
+          fetch('controller2.php', {
+              method: 'POST',
+              body: data
+          }).then(response => response.text()).then(response =>{
+              console.log(response);
+          }).catch(error => console.log(error));
+          
+      });
   </script>
 </body>
 </html>
