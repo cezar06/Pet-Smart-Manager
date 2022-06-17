@@ -259,7 +259,6 @@ table{
 }
 .Info-header{
     display: flex;
-    align-items: center;
     /* the header has two columns */
     justify-content: space-between;
     /* the columns will be on the first 80% of the div */

@@ -49,6 +49,19 @@ if (!empty($_POST["delete"]) && is_array($_POST["delete"])) {
         ]);
     }
 }
+if (!empty($_POST["delete2"]) && is_array($_POST["delete2"])) {
+    foreach ($_POST["delete2"] as $id => $restrictie) {
+        $statement = $pdo->prepare(
+            "DELETE FROM Restrictions WHERE username = :username AND restriction = :restriction AND petname = :petname"
+        );
+        $statement->execute([
+            ":username" => $_SESSION['login_user'],
+            ":restriction" => $id,
+            ":petname" => $_GET["value"],
+        ]);
+    }
+}
+
 // Set your timezone!!
 date_default_timezone_set("Europe/Athens");
 //if value is set in the URL, display it
@@ -62,6 +75,10 @@ if (isset($_GET["ym"])) {
     // This month
     $ym = date("Y-m");
 }
+
+
+
+
 //split ym into year and month
 $year = substr($ym, 0, 4);
 $month = substr($ym, 5, 2);
@@ -282,7 +299,9 @@ $str .= "<language >en-US </language>\n";
 //connect to sqlite database
 $pdo = new PDO("sqlite:database.db");
 //get all "text" from table Calendar where "type" is "Life Event" using a prepared statement, in chronological order
-$statement = $pdo->prepare("SELECT * FROM Calendar WHERE type = 'Life Event' ORDER BY year, month, day desc");
+$statement = $pdo->prepare("SELECT * FROM Calendar WHERE type = 'Life Event' AND petname = :petname AND username = :owner ORDER BY year, month, day desc");
+$statement->bindValue(':petname', $pet_id);
+$statement->bindValue(':owner', $_SESSION['login_user']);
 $statement->execute();
 $rows = $statement->fetchAll();
 //if web_url contains character &, replace it with &amp;
@@ -378,7 +397,7 @@ file_put_contents("rss.xml", $str);
             </form>
          </div>
       </div>
-
+            
       <div class="Info">
          <div class="Info-content">
             <div class="close-Info">+</div>
@@ -386,9 +405,57 @@ file_put_contents("rss.xml", $str);
             <div class="Info-header">
                 <div class="Restrictions-header">
                     <h3>Restrictions</h3>
+                    <form method = "post">
+                        <input id="restri-text" type="text" style="width: 135px" placeholder="restriction" name="restri-text" />
+                        <input type="submit" name="final" style="display:none;">
+                    <?php
+                        /*$nume_pet_curent = $_GET["value"];
+                        echo ($nume_pet_curent);*/
+                        $pdo = new PDO('sqlite:database.db'); 
+                        if (isset($_POST['final'])){
+                            //check if the restriction already exists
+                            $statement = $pdo->prepare(
+                                "SELECT * FROM Restrictions WHERE username = :user_name AND petname = :pet_name AND restriction = :restr"
+                            );
+                            $statement -> execute([
+                                ":user_name" => $_GET["user"],
+                                ":pet_name" => $_GET["value"],
+                                ":restr" => $_POST["restri-text"]
+                            ]);
+                            $result = $statement->fetchAll();
+                            if (count($result) > 0){
+                                echo "<script>alert('Restriction already exists');</script>";
+                            }else{
+                                $statement = $pdo->prepare("INSERT INTO Restrictions (username, petname, restriction) VALUES (:user_name, :pet_name, :restr)");
+                                $statement ->execute(array(
+                                    ":user_name" => $_GET["user"],
+                                    ":pet_name" => $_GET["value"],
+                                    ":restr" => $_POST["restri-text"]
+                                ));
+                            }
+                        }
+                        $statement = $pdo->query("SELECT * FROM Restrictions WHERE username = '" .$_GET["user"]. "'AND petname ='" .$_GET["value"]. "'" );
+                        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+                            echo '<p>'.$row['restriction'].' </p>';
+                            echo '<button type ="submit" style = "float: right; "name ="delete2[' .$row['restriction'].
+                            ']">Delete</button><br / >';
+                        }
+                    ?>
+                       
+                    </form>
                 </div>
                 <div class="Medical-history-header">
                     <h3>Medical History</h3>
+                    <?php
+                        $pdo = new PDO('sqlite:database.db');
+                        $statement = $pdo->query("SELECT * FROM Calendar WHERE username = '" .$_GET["user"]. "'AND petname ='" .$_GET["value"]. "' AND type = 'Medical'" );
+                        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+                            echo '<p>'.$row['text'].' </p>';
+                            echo '<p>'.$row['day'].'-</p>';
+                            echo '<p>'.$row['month'].'-</p>';
+                            echo '<p>'.$row['year'].'</p> <br / >';
+                        }
+                    ?>
                 </div>
             </div>
          </div>
