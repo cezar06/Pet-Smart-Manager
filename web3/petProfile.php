@@ -129,6 +129,7 @@ if (!empty($_POST["delete2"]) && is_array($_POST["delete2"])) {
         ]);
     }
 }
+
 // Set your timezone!!
 date_default_timezone_set("Europe/Athens");
 //if value is set in the URL, display it
@@ -318,6 +319,44 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
                         '" class="pd-image" alt="pet-image">';
                     ?>
                         <?php echo "<h3>" . $pet_id . "</h3>"; ?>
+                        <form method = "post">
+                            <button type ="submit" name ="deletePet">Delete</button>
+                            <?php
+                                if (isset($_POST["deletePet"])){
+                                    $statement = $pdo->prepare(
+                                        "DELETE FROM Pets WHERE owner = :username AND petname = :petname"
+                                    );
+                                    $statement->execute([
+                                        ":username" => $_SESSION['login_user'],
+                                        ":petname" => $_GET["value"],
+                                    ]);
+
+                                    $statement = $pdo->prepare(
+                                        "DELETE FROM Calendar WHERE username = :username AND petname = :petname"
+                                    );
+                                    $statement->execute([
+                                        ":username" => $_SESSION['login_user'],
+                                        ":petname" => $_GET["value"],
+                                    ]);
+
+                                    $statement = $pdo->prepare(
+                                        "DELETE FROM Restrictions WHERE username = :username AND petname = :petname"
+                                    );
+                                    $statement->execute([
+                                        ":username" => $_SESSION['login_user'],
+                                        ":petname" => $_GET["value"],
+                                    ]);
+                                    $statement = $pdo->prepare(
+                                        "DELETE FROM Friends WHERE user1 = :username AND pet1 = :petname"
+                                    );
+                                    $statement->execute([
+                                        ":username" => $_SESSION['login_user'],
+                                        ":petname" => $_GET["value"],
+                                    ]);
+                                    echo ("<script>location.href='dashboard.php'</script>");
+                                }
+                            ?>
+                        </form>
                         <a href = "rss.xml" target = "_blank"> 
                             <img src="images/Feed-icon.svg.png" style="width: 25px;" alt="rss-icon">
                         </a>
@@ -479,44 +518,41 @@ file_put_contents("rss.xml", $str);
             <div class="Info-header">
                 <div class="Restrictions-header">
                     <h3>Restrictions</h3>
-                                        <form method = "post">
-                        <input id="restri-text" type="text" style="width: 135px" placeholder="restriction" name="restri-text" />
-                        <input type="submit" name="final" style="display:none;">
-                    <?php
-                        /*$nume_pet_curent = $_GET["value"];
-                        echo ($nume_pet_curent);*/
-                        $pdo = new PDO('sqlite:database.db'); 
-                        if (isset($_POST['final'])){
-                            //check if the restriction already exists
-                            $statement = $pdo->prepare(
-                                "SELECT * FROM Restrictions WHERE username = :user_name AND petname = :pet_name AND restriction = :restr"
-                            );
-                            $statement -> execute([
-                                ":user_name" => $_GET["user"],
-                                ":pet_name" => $_GET["value"],
-                                ":restr" => $_POST["restri-text"]
-                            ]);
-                            $result = $statement->fetchAll();
-                            if (count($result) > 0){
-                                echo "<script>alert('Restriction already exists');</script>";
-                            }else{
-                                $statement = $pdo->prepare("INSERT INTO Restrictions (username, petname, restriction) VALUES (:user_name, :pet_name, :restr)");
-                                $statement ->execute(array(
-                                    ":user_name" => $_GET["user"],
-                                    ":pet_name" => $_GET["value"],
-                                    ":restr" => $_POST["restri-text"]
-                                ));
-                            }
-                        }
-                        $statement = $pdo->query("SELECT * FROM Restrictions WHERE username = '" .$_GET["user"]. "'AND petname ='" .$_GET["value"]. "'" );
-                        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
-                            echo '<p>'.$row['restriction'].' </p>';
-                            echo '<button type ="submit" style = "float: right; "name ="delete2[' .$row['restriction'].
-                            ']">Delete</button><br / >';
-                        }
-                    ?>
-                       
-                    </form>
+                        <form method = "post">
+                            <input id="restri-text" type="text" style="width: 135px" placeholder="restriction" name="restri-text" />
+                            <input type="submit" name="final" style="display:none;">
+                            <?php
+                                $pdo = new PDO('sqlite:database.db'); 
+                                if (isset($_POST['final'])){
+                                    //check if the restriction already exists
+                                    $statement = $pdo->prepare(
+                                        "SELECT * FROM Restrictions WHERE username = :user_name AND petname = :pet_name AND restriction = :restr"
+                                    );
+                                    $statement -> execute([
+                                        ":user_name" => $_GET["user"],
+                                        ":pet_name" => $_GET["value"],
+                                        ":restr" => $_POST["restri-text"]
+                                    ]);
+                                    $result = $statement->fetchAll();
+                                    if (count($result) > 0){
+                                        echo "<script>alert('Restriction already exists');</script>";
+                                    }else{
+                                        $statement = $pdo->prepare("INSERT INTO Restrictions (username, petname, restriction) VALUES (:user_name, :pet_name, :restr)");
+                                        $statement ->execute(array(
+                                            ":user_name" => $_GET["user"],
+                                            ":pet_name" => $_GET["value"],
+                                            ":restr" => $_POST["restri-text"]
+                                        ));
+                                    }
+                                }
+                                $statement = $pdo->query("SELECT * FROM Restrictions WHERE username = '" .$_GET["user"]. "'AND petname ='" .$_GET["value"]. "'" );
+                                while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+                                    echo '<p>'.$row['restriction'].' </p>';
+                                    echo '<button type ="submit" style = "float: right; "name ="delete2[' .$row['restriction'].
+                                    ']">Delete</button><br / >';
+                                }
+                            ?>
+                        </form>
                     
                 </div>
                 <div class="Medical-history-header">

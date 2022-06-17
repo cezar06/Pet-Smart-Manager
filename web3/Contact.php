@@ -246,9 +246,11 @@
               body: data
           }).then(response => response.text()).then(response =>{
               console.log(response);
+              alert("Message send successfully, thank you for your feedback!");
           }).catch(error => console.log(error));
           
       });
   </script>
+  
 </body>
 </html>

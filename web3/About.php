@@ -147,7 +147,6 @@
             <h2 style="text-align:center">Cires Rares</h2>
             <p style="text-align:center" class="title">Founder</p>
             <p style="text-align:center">I like turtles.</p>
-            <p style="text-align:center"><button class="button2">Contact</button></p>
           </div>
         </div>
       </div>
@@ -159,7 +158,6 @@
             <h2 style="text-align:center">Vlad Sarghe</h2>
             <p style="text-align:center" class="title">Founder</p>
             <p style="text-align:center">I like bears.</p>
-            <p style="text-align:center"><button class="button2">Contact</button></p>
           </div>
         </div>
       </div>
@@ -171,7 +169,6 @@
             <h2 style="text-align:center">Tudor Cezar</h2>
             <p style="text-align:center" class="title">Founder</p>
             <p style="text-align:center">I like birds.</p>
-            <p style="text-align:center"><button class="button2">Contact</button></p>
           </div>
         </div>
       </div>
