@@ -19,7 +19,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pet Smart Manager</title>
+    <title>Pet-Smart-Manager</title>
     <link rel = "icon" href = 
       "https://cdn3.iconfinder.com/data/icons/animals-114/48/dog_animal_pet_canine-512.png" 
         type = "image/x-icon">
@@ -176,7 +176,7 @@
           </form>
         </div>
         <div class="main_img--container">
-          <img src="images/welcome.svg" alt="pic" id="main__img" />
+          <img src="images/welcome.svg" alt="pic" id="main__img">
         </div>
       </div>
     </div>
