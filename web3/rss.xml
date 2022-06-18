@@ -6,6 +6,11 @@
 <description>Here you can see all important moments that Lala has had</description>
 <language >en-US </language>
 <item>
+<title>2022-06-24</title>
+<description>test <br></description>
+<link>http://localhost/web3/petProfile.php?value=Lala&amp;amp;user=rares</link>
+</item>
+<item>
 <title>2022-06-23</title>
 <description>Veterinar</description>
 <link>http://localhost/web3/petProfile.php?value=Lala&amp;amp;user=rares</link>

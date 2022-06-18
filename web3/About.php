@@ -33,7 +33,7 @@
     $pdo = new PDO('sqlite:database.db');
     if(isset($_POST['submitRegister']))
       {  
-        if ($_POST['password'] !== $_POST['Repassword']){   //parola e diferita de reconfirm parola
+        if (htmlspecialchars($_POST['password']) !== htmlspecialchars($_POST['Repassword'])){   //parola e diferita de reconfirm parola
                 echo "<div class='isa_error' id='warning'>
                 <i class='fa fa-times-circle'></i>
                 Passwords are not the same.
@@ -52,7 +52,7 @@
             $statement->execute();
             
             while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                if ($row['username'] === $_POST['username']){ //daca se gaseste un username cu user la fel =>eroare
+                if (htmlspecialchars($row['username']) === htmlspecialchars($_POST['username'])){ //daca se gaseste un username cu user la fel =>eroare
                   echo "<div class='isa_error' id='warning'>
                   <i class='fa fa-times-circle'></i>
                   Username already exists.

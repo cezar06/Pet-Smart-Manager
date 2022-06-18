@@ -225,19 +225,19 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
             if ($row["type"] == "Medical") {
                 $week .=
                     '<div class="medical-event-text">' .
-                    $row["text"] .
+                    htmlspecialchars($row["text"]) .
                     "</div>";
             } elseif ($row["type"] == "Feeding") {
                 $week .=
                     '<div class="feeding-event-text">' .
-                    $row["text"] .
+                    htmlspecialchars($row["text"]) .
                     "</div>";
             } elseif ($row["type"] == "Life Event") {
                 $week .=
-                    '<div class="life-event-text">' . $row["text"] . "</div>";
+                    '<div class="life-event-text">' . htmlspecialchars($row["text"]) . "</div>";
             } elseif ($row["type"] == "Other") {
                 $week .=
-                    '<div class="other-event-text">' . $row["text"] . "</div>";
+                    '<div class="other-event-text">' . htmlspecialchars($row["text"]) . "</div>";
             }
         }
     }
@@ -396,11 +396,11 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
                                 $rows = $statement->fetchAll();
                                 foreach ($rows as $row) {
                                     echo "<a href='petProfile.php?pet_id=" .
-                                        $row["pet2"] .
+                                        htmlspecialchars($row["pet2"]) .
                                         "'>" .
-                                        $row["pet2"] .
+                                        htmlspecialchars($row["pet2"]) .
                                         " (owner: " .
-                                        $row["user2"] .
+                                        htmlspecialchars($row["user2"]) .
                                         ")</a><br>";
                                     echo "<form method='post'><button name='deletefriend[$row[pet2]-$row[user2]]' type='submit'>Delete</button></form>";
                                 }
@@ -565,7 +565,7 @@ file_put_contents("rss.xml", $str);
                                 }
                                 $statement = $pdo->query("SELECT * FROM Restrictions WHERE username = '" .$_GET["user"]. "'AND petname ='" .$_GET["value"]. "'" );
                                 while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
-                                    echo '<p>'.$row['restriction'].' </p>';
+                                    echo '<p>'.htmlspecialchars($row['restriction']).' </p>';
                                     echo '<button type ="submit" style = "float: right; "name ="delete2[' .$row['restriction'].
                                     ']">Delete</button><br / >';
                                 }
