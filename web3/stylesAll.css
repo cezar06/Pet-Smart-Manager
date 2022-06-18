@@ -103,6 +103,10 @@
 
 @media screen and (max-width: 960px)
 {
+    .gallery img{
+        max-width: 100%;
+        height: auto;
+    }
     .button2 {
         border: none;
         outline: 0;
@@ -419,3 +423,4 @@ input{
     transform: rotate(45deg);
     cursor: pointer;
 }
+
