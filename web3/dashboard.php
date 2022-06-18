@@ -8,6 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+    <link rel = "icon" href = 
+      "https://cdn3.iconfinder.com/data/icons/animals-114/48/dog_animal_pet_canine-512.png" 
+        type = "image/x-icon">
     <link rel="stylesheet" href="stylesAll.css" />
     <link rel="stylesheet" href="styles_dashboard.css" />
     <script
