@@ -121,7 +121,7 @@
     <!--Navbar-->
     <nav class="navbar">
       <div class="navbar__container">
-        <a href="/" class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+        <a class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
         <div class="navbar__toggle" id="mobile-menu">
           <span class="bar"></span>
           <span class="bar"></span>

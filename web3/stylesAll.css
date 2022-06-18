@@ -37,7 +37,6 @@
     -moz-text-fill-color: transparent;
     display: flex;
     align-items: center;
-    cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
     background-clip: text;

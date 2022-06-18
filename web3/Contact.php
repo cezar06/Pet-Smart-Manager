@@ -91,7 +91,7 @@
   <!--Navbar-->
   <nav class="navbar">
       <div class="navbar__container">
-        <a href="/" class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+        <a class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
         <div class="navbar__toggle" id="mobile-menu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -152,10 +152,9 @@
     </div>
 
     <div class="contact-data">
-        <a href="#" class="fa fa-facebook"></a>
-        <a href="#" class="fa fa-instagram"></a>
+        <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+        <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
     </div>
-  </div>
   
   <div class="LogIn-modal">   
       <div class="modal-content">

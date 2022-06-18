@@ -277,7 +277,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
     <!--Navbar-->
     <nav class="navbar">
          <div class="navbar__container">
-            <a href="/" class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+            <a class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
             <div class="navbar__toggle" id="mobile-menu">
                <span class="bar"></span>
                <span class="bar"></span>
@@ -309,57 +309,75 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
     <div class="profile-container">
         <div class="profile-details">
                     <div class="col1">
-                    <?php
-                    $statement = $pdo->query(
-                        "SELECT * FROM Pets WHERE petname = '$pet_id'"
-                    );
-                    $row = $statement->fetch();
-                    echo '<img src="data:image/png;base64,' .
-                        base64_encode($row["image"]) .
-                        '" class="pd-image" alt="pet-image">';
-                    ?>
-                        <?php echo "<h3>" . $pet_id . "</h3>"; ?>
-                        <form method = "post">
-                            <button type ="submit" name ="deletePet">Delete</button>
-                            <?php
-                                if (isset($_POST["deletePet"])){
-                                    $statement = $pdo->prepare(
-                                        "DELETE FROM Pets WHERE owner = :username AND petname = :petname"
-                                    );
-                                    $statement->execute([
-                                        ":username" => $_SESSION['login_user'],
-                                        ":petname" => $_GET["value"],
-                                    ]);
+                        <?php
+                        $statement = $pdo->query(
+                            "SELECT * FROM Pets WHERE petname = '$pet_id'"
+                        );
+                        $row = $statement->fetch();
+                        echo '<img src="data:image/png;base64,' .
+                            base64_encode($row["image"]) .
+                            '" class="pd-image" alt="pet-image">';
+                        ?>
+                            <?php echo "<h3>" . $pet_id . "</h3>"; ?>
+                            <form method = "post">
+                                <button type ="submit" name ="deletePet">Delete</button>
+                                <?php
+                                    if (isset($_POST["deletePet"])){
+                                        $statement = $pdo->prepare(
+                                            "DELETE FROM Pets WHERE owner = :username AND petname = :petname"
+                                        );
+                                        $statement->execute([
+                                            ":username" => $_SESSION['login_user'],
+                                            ":petname" => $_GET["value"],
+                                        ]);
 
-                                    $statement = $pdo->prepare(
-                                        "DELETE FROM Calendar WHERE username = :username AND petname = :petname"
-                                    );
-                                    $statement->execute([
-                                        ":username" => $_SESSION['login_user'],
-                                        ":petname" => $_GET["value"],
-                                    ]);
+                                        $statement = $pdo->prepare(
+                                            "DELETE FROM Calendar WHERE username = :username AND petname = :petname"
+                                        );
+                                        $statement->execute([
+                                            ":username" => $_SESSION['login_user'],
+                                            ":petname" => $_GET["value"],
+                                        ]);
 
-                                    $statement = $pdo->prepare(
-                                        "DELETE FROM Restrictions WHERE username = :username AND petname = :petname"
-                                    );
-                                    $statement->execute([
-                                        ":username" => $_SESSION['login_user'],
-                                        ":petname" => $_GET["value"],
-                                    ]);
-                                    $statement = $pdo->prepare(
-                                        "DELETE FROM Friends WHERE user1 = :username AND pet1 = :petname"
-                                    );
-                                    $statement->execute([
-                                        ":username" => $_SESSION['login_user'],
-                                        ":petname" => $_GET["value"],
-                                    ]);
-                                    echo ("<script>location.href='dashboard.php'</script>");
+                                        $statement = $pdo->prepare(
+                                            "DELETE FROM Restrictions WHERE username = :username AND petname = :petname"
+                                        );
+                                        $statement->execute([
+                                            ":username" => $_SESSION['login_user'],
+                                            ":petname" => $_GET["value"],
+                                        ]);
+                                        $statement = $pdo->prepare(
+                                            "DELETE FROM Friends WHERE user1 = :username AND pet1 = :petname"
+                                        );
+                                        $statement->execute([
+                                            ":username" => $_SESSION['login_user'],
+                                            ":petname" => $_GET["value"],
+                                        ]);
+                                        echo ("<script>location.href='dashboard.php'</script>");
+                                    }
+                                ?>
+                            </form>
+                            <a href = "rss.xml" target = "_blank"> 
+                                <img src="images/Feed-icon.svg.png" style="width: 25px;" alt="rss-icon">
+                            </a>
+                            <?php   //sharing to twitter
+                                $statement = $pdo->query(
+                                    "SELECT * FROM Calendar WHERE petname = '$pet_id' AND username = '" .$_GET["user"]. "' AND type = 'Life Event'"
+                                );
+                                $message="I would like to share with you these events of my pet," .$_GET["value"]. "!  ";
+                                while ($row = $statement ->fetch(PDO::FETCH_ASSOC)){
+                                    $message .= $row['text'] . ": ";
+                                    $message .= $row['day'] . "-";
+                                    $message .= $row['month'] . "-";
+                                    $message .= $row['year'] ."  ";
                                 }
+                                $redirect = "https://twitter.com/intent/tweet?original_referer=
+                                http%3A%2F%2Ffiddle.jshell.net%2F_display%2F&text=" .$message. "&url
+                                =URL";
                             ?>
-                        </form>
-                        <a href = "rss.xml" target = "_blank"> 
-                            <img src="images/Feed-icon.svg.png" style="width: 25px;" alt="rss-icon">
-                        </a>
+                            <a href = "<?php echo $redirect ?>" target = "_blank" onclick="return Share.me(this)"> 
+                                <img src="images/Twitter-Logo.png" style="width: 30px;" alt="rss-icon">
+                            </a>
                     </div>
                     <div class="col2">
                         <button name="edit" class="profile-button" id="see-info">See Info</button>
