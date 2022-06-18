@@ -120,14 +120,14 @@
           <?php
             if ($_SESSION['logged_in_user'] == '0'){  //daca utilizatorul nu e autentificat
               echo "<li class='navbar__button'>
-              <a href='#' class='button' id='Register'>Register</a>
+              <a href='#' class='buttonlog' id='Register'>Register</a>
             </li>
             <li class='navbar__button'>
-              <a href='#' class='button' id='LogIn'>Log In</a>
+              <a href='#' class='buttonlog' id='LogIn'>Log In</a>
             </li>";
             }else{  //daca utilizatorul e autentificat
               echo "<li class='navbar__button'><form action='logOut.php' method='post'>
-                  <button class='button' name = 'Logout' type = 'submit'>Log Out</button></form></li>";
+                  <button class='buttonlog' name = 'Logout' type = 'submit'>Log Out</button></form></li>";
             }
           ?>
         </ul>

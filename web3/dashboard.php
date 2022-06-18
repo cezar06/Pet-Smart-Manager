@@ -113,14 +113,14 @@
                <?php
                   if ($_SESSION['logged_in_user'] == '0'){
                   echo "<li class='navbar__button'>
-                  <a href='#' class='button' id='Register'>Register</a>
+                  <a href='#' class='buttonlog' id='Register'>Register</a>
                   </li>
                   <li class='navbar__button'>
-                  <a href='#' class='button' id='LogIn'>Log In</a>
+                  <a href='#' class='buttonlog' id='LogIn'>Log In</a>
                   </li>";
                   }else{
-                  echo "<li class='navbar__button'><form action='logOut.php' method='post'>
-                  <button class='button' name = 'Logout' type = 'submit'>Log Out</button></form></li>";
+                  echo "<li class='navbar__item'><div class='navbar__links'><form class='align' action='logOut.php' method='post'>
+                  <button class='buttonlog' name = 'Logout' type = 'submit'>Log Out</button></form></div></li>";
                   }
                ?>
             </ul>

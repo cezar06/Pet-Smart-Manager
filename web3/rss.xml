@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-<title>Important Moments for Lala</title>
-<link> http://localhost/web3/petProfile.php?value=Lala&amp;user=rares </link>
-<description>Here you can see all important moments that Lala has had</description>
+<title>Important Moments for aaaaa</title>
+<link> http://localhost/web3/petProfile.php?ym=2022-09&amp;value=aaaaa&amp;user=cezar </link>
+<description>Here you can see all important moments that aaaaa has had</description>
 <language >en-US </language>
-<item>
-<title>2022-06-24</title>
-<description>test <br></description>
-<link>http://localhost/web3/petProfile.php?value=Lala&amp;amp;user=rares</link>
-</item>
-<item>
-<title>2022-06-23</title>
-<description>Veterinar</description>
-<link>http://localhost/web3/petProfile.php?value=Lala&amp;amp;user=rares</link>
-</item>
-<item>
-<title>2022-06-23</title>
-<description>Party</description>
-<link>http://localhost/web3/petProfile.php?value=Lala&amp;amp;user=rares</link>
-</item>
 </channel>
 </rss>

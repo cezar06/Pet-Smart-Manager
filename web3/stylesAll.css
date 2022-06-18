@@ -69,11 +69,12 @@
 }
 
 .navbar__button{
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     padding: 0 1rem;
     width: 100%;
+    float: right;
 }
 
 .button{
@@ -102,11 +103,10 @@
 }
 
 @media screen and (max-width: 960px)
-{
-    .gallery img{
-        max-width: 100%;
-        height: auto;
-    }
+{   .gallery img{
+    max-width: 100%;
+    height: auto;
+}
     .button2 {
         border: none;
         outline: 0;
@@ -178,7 +178,12 @@
     }
 
     .navbar__button{
-        padding-bottom: 2rem;
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+        justify-content: center;
+        
     }
 
     .button{
@@ -282,26 +287,6 @@
     z-index: 2;
     color: #fff;
     text-decoration: none;
-}
-  
-.main__button:after {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 0;
-    border-radius: 4px;
-    height: 100%;
-    background: #d28f79;
-    transition: all 0.4s;
-}
-  
-.main__button:hover {
-    color: #d28f79;
-}
-  
-.main__button:hover:after {
-    width: 100%;
 }
   
 .main__img--container {
@@ -423,4 +408,72 @@ input{
     transform: rotate(45deg);
     cursor: pointer;
 }
+.buttonlog{
+        padding: 10px 20px;
+        height: 100%;
+        height: 50px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        color: #d28f79;
+        border-radius: 4px;
+        background: #fefaf1;
+}
+
+@media screen and (max-width: 768px) {
+    .main__container {
+      display: grid;
+      grid-template-columns: auto;
+      align-items: center;
+      justify-self: center;
+      width: 100%;
+      margin: 0 auto;
+      height: 90vh;
+    }
+  
+    .main__content {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+  
+    .main__content h1 {
+      font-size: 2.5rem;
+      margin-top: 2rem;
+    }
+  
+    .main__content h2 {
+      font-size: 3rem;
+    }
+  
+    .main__content p {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .main__content h1 {
+      font-size: 2rem;
+      margin-top: 3rem;
+    }
+  
+    .main__content h2 {
+      font-size: 2rem;
+    }
+  
+    .main__content p {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+    }
+  
+    .main__btn {
+      padding: 12px 36px;
+      margin: 2.5rem 0;
+    }
+  }
+
+
 

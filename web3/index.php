@@ -150,14 +150,14 @@
           <?php
             if ($_SESSION['logged_in_user'] == '0'){  //daca utilizatorul nu e autentificat
               echo "<li class='navbar__button'>
-              <a href='#' class='button' id='Register'>Register</a>
+              <a href='#' class='buttonlog' id='Register'>Register</a>
             </li>
             <li class='navbar__button'>
-              <a href='#' class='button' id='LogIn'>Log In</a>
+              <a href='#' class='buttonlog' id='LogIn'>Log In</a>
             </li>";
             }else{  //daca utilizatorul e autentificat
               echo "<li class='navbar__button'><form action='logOut.php' method='post'>
-                  <button class='button' name = 'Logout' type = 'submit'>Log Out</button></form></li>";
+                  <button class='buttonlog' name = 'Logout' type = 'submit'>Log Out</button></form></li>";
             }
           ?>
         </ul>
@@ -171,7 +171,7 @@
           <h1>PET SMART</h1>
           <h2>MANAGER</h2>
           <p>Manage your pets</p>
-          <form action="/web2/index.php">
+          <form action="/web3/index.php">
           <button class="main__button">Get Started</button>
           </form>
         </div>

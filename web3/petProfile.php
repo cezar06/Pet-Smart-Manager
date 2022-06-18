@@ -303,7 +303,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
                </li>
                <li>
                <?php echo "<li class='navbar__button'><form action='logOut.php' method='post'>
-                  <button class='button' name = 'Logout' type = 'submit'>Log Out</button></form></li>"; ?>
+                  <button class='buttonlog' name = 'Logout' type = 'submit'>Log Out</button></form></li>"; ?>
                 </li>
             </ul>
          </div>
