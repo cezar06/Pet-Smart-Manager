@@ -17,7 +17,7 @@ function credentialsExist($user, $pass){
         $statement->execute();
         
         while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
-            if ($row['username'] === $user && $row['password'] === $pass)
+            if ($row['username'] === $user && password_verify($pass, $row['password']))
             return true;
         }
      return false;

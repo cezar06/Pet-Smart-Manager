@@ -72,7 +72,7 @@
                 );
                 $statement->execute([
                       ":username" => $_POST["username"],
-                      ":password" => $_POST["password"]
+                      ":password" => password_hash($_POST["password"], PASSWORD_DEFAULT)
                 ]);
                 echo "<div class='isa_success' id='succes'>
                   <i class='fa fa-times-circle'></i>
