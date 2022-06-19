@@ -25,65 +25,6 @@
     />
   </head>
    <body>
-   <?php   //register method
-    $dupUser=0;
-    $pdo = new PDO('sqlite:database.db');
-    if(isset($_POST['submitRegister']))
-          {  
-            if (htmlspecialchars($_POST['password']) !== htmlspecialchars($_POST['Repassword'])){   //parola e diferita de reconfirm parola
-                    echo "<div class='isa_error' id='warning'>
-                    <i class='fa fa-times-circle'></i>
-                    Passwords are not the same.
-                    </div>
-                    <script>
-                    setTimeout(function(){
-                      document.getElementById('warning').style.display = 'none';
-                      },3000);
-                      </script>";
-            }
-            else{
-                $statement = $pdo->prepare(
-                    "SELECT * FROM Users"
-                );
-                
-                $statement->execute();
-                
-                while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                    if (htmlspecialchars($row['username']) === htmlspecialchars($_POST['username'])){
-                      echo "<div class='isa_error' id='warning'>
-                      <i class='fa fa-times-circle'></i>
-                      Username already exists.
-                      </div>
-                      <script>
-                      setTimeout(function(){
-                          document.getElementById('warning').style.display = 'none';
-                          },3000);
-                          </script>";
-                      $dupUser=1;
-                    }
-                      
-                }
-                if ($dupUser === 0){
-                    $statement = $pdo->prepare(
-                      "INSERT INTO Users (username, password) VALUES (:username, :password)"
-                    );
-                    $statement->execute([
-                          ":username" => $_POST["username"],
-                          ":password" => password_hash($_POST["password"], PASSWORD_DEFAULT)
-                    ]);
-                    echo "<div class='isa_success' id='succes'>
-                      <i class='fa fa-times-circle'></i>
-                      Account created successfully!
-                      </div>
-                      <script>
-                      setTimeout(function(){
-                          document.getElementById('succes').style.display = 'none';
-                          },3000);
-                          </script>";
-                }
-            }
-          }
-   ?>
       <!--Navbar-->
       <nav class="navbar">
          <div class="navbar__container">
@@ -176,7 +117,7 @@
                   {
                      echo '<div class="pet__item">';
                      echo '<a href="petProfile.php?value='.$row['petname'].'&amp;user='.$_SESSION['login_user'].'"><img src="data:image/png;base64,' . base64_encode($row['image']) . '" class="display-image" class="display-image2" alt="image of pet"></a>';
-                     echo '<p class="pet__name">'.$row['petname'].'</p>';
+                     echo '<p class="pet__name">'.htmlspecialchars($row['petname']).'</p>';
                      echo '</div>';
                   }
                ?>

@@ -36,7 +36,18 @@
     $pdo = new PDO('sqlite:database.db');
     if(isset($_POST['submitRegister']))
       {  
-        if (htmlspecialchars($_POST['password']) !== htmlspecialchars($_POST['Repassword'])){   //parola e diferita de reconfirm parola
+        if (empty(htmlspecialchars($_POST['password'])) || empty(htmlspecialchars($_POST['password'])) || empty(htmlspecialchars($_POST['username']))){ //verificam daca un camp este gol
+          echo "<div class='isa_error' id='warning'>
+                <i class='fa fa-times-circle'></i>
+                Nice one, try again!
+                </div>
+                <script>
+                setTimeout(function(){
+                  document.getElementById('warning').style.display = 'none';
+                  },3000);
+                  </script>";
+        } 
+        else if (htmlspecialchars($_POST['password']) !== htmlspecialchars($_POST['Repassword'])){   //parola e diferita de reconfirm parola
                 echo "<div class='isa_error' id='warning'>
                 <i class='fa fa-times-circle'></i>
                 Passwords are not the same.
@@ -252,6 +263,11 @@
         menu.classList.toggle("is-active");
         menuLinks.classList.toggle("active");
       });
+    </script>
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
     </script>
 </body>
 </html>
