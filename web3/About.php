@@ -166,17 +166,6 @@
       </div>
 
       <div class="column">
-        <div class="card2">
-          <img src="images/vlad_poza.jpg" alt="Vlad" style="width:100%">
-          <div class="container">
-            <h2 style="text-align:center">Vlad Sarghe</h2>
-            <p style="text-align:center" class="title">Founder</p>
-            <p style="text-align:center">I like bears.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
         <div class="card3">
           <img src="images/cezar_poza.jpg" alt="Cezar" style="width:100%">
           <div class="container">

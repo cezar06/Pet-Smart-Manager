@@ -30,20 +30,6 @@
                     </li>
                     <li typeof="sa:ContributorRole" property="schema:author">
                         <span typeof="schema:Person">
-                            <meta property="schema:familyName" content="Sarghe">
-                            <meta property="schema:givenName" content="Andrei">
-                            <meta property="schema:additionalName" content="Vlad">     
-                            <span property="schema:name">Sarghe Andrei-Vlad</span>
-                        </span>
-                        <ul>
-                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
-                                <a href="mailto:andrei.sarghe@info.uaic.ro"
-                                    property="schema:email">andrei.sarghe@info.uaic.ro</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li typeof="sa:ContributorRole" property="schema:author">
-                        <span typeof="schema:Person">
                             <meta property="schema:familyName" content="Tudor">
                             <meta property="schema:givenName" content="Cezar"> 
                             <span property="schema:name">Tudor Cezar</span>
@@ -58,17 +44,20 @@
                 </ul>
             </section>
         </div>
+        <div role="doc-introduction">
         <section>
             <h3>1. Introduction</h3>
-            <section>
-                <h4>1.1 Purpose</h4>
-                <p>
-                    The purpose of this document is to present a detailed description of the web application
-                    Pet Smart Manager. This document will explain the purpose, features and functionalities of the
-                    software.
-                    This document is intended for the potential users of the software.
-                </p>
-            </section>
+            <div role="doc-abstract">
+                <section>
+                    <h4>1.1 Purpose</h4>
+                    <p>
+                        The purpose of this document is to present a detailed description of the web application
+                        Pet Smart Manager. This document will explain the purpose, features and functionalities of the
+                        software.
+                        This document is intended for the potential users of the software.
+                    </p>
+                </section>
+            </div>
             <section>
                 <h4>1.2 Document Conventions</h4>
                 <p>
@@ -79,13 +68,13 @@
             <section>
                 <h4>1.3 Intended Audience and Reading Suggestions</h4>
                 <p>
-                    Users who wish to use the application for managing their pets.
+                    This document is intended for the potential users of the software. The reader is advised to read the document for a detailed description of the software.
                 </p>
             </section>
             <section>
                 <h4>1.4 Product Scope</h4>
                 <p>
-                    Pet Smart Manager has been developed for the purpose of providing a way to manage a collection of pets
+                    Pet Smart Manager has been developed for the purpose of providing an easy way for users to manage their pets. The software is intended to be used by the pet owners. The benefits of using this software include its ease of use and its ease of maintenance.
                 </p>
             </section>
             <section>
@@ -108,119 +97,62 @@
                 </ol>
             </section>
         </section>
+        </div>
         <section>
             <h3>2. Overall Description</h3>
             <section>
                 <h4>2.1 Product Description</h4>
                 <p>
-                    Our Pet Smart Manager web application has been developed 
-                    for those that wish to visualize data and other things like a feeding calendar for their pets
+                    Pet Smart Manager is a self-contained web application that allows users to manage their pets in various ways.
                 </p>
             </section>
             <section>
                 <h4>2.2 Product Functions</h4>
-                <p>
-                    The web application manages personal/family pets. 
-                    These pets have associated data such as breed, age, name, owner, medical history, feeding calendar.
-                    The system offers support for visualizing and modifying this data. 
-                    The admin is offered with support for managing users.
-                    The application offers the option of exporting different statistics in PDF format.
-                </p>
-                <p>Nav bar : central point of navigation to the rest of the pages within the website. 
-                    It's available from every part of the website, just like the footer</p>
                     <ul>
                         <li>
-                            about : redirects to an about page with the description of the website founders
+                            create and login to the web application
                         </li>
                         <li>
-                            contact : redirects to a contact and connect with us page
+                            add, edit and delete pets
                         </li>
                         <li>
-                            login : redirects to a form for logging in the website
+                            use an in-built calendar to manage diffent types of events in the life of the pet, such as birthdays, appointments, feeding and so on
                         </li>
                         <li>
-                            register : redirects to a form for register on the website
+                            add restrictions to each pet in particular
                         </li>
                         <li>
-                            dashboard : redirects to the dashboard page - which provides funcitonalities for managing the pets
+                            provides a section where the user can upload media files such as videos, gifs, pictures, audio files for each pet in particular
+                        </li>
+                        <li>
+                            provides a section where the user can see the pet's medical history, being pulled from the calendar
+                        </li>
+                        <li>
+                            the ability to add pets to one's friend list by specifying the target pet's name and the user's name, and the ability to remove pets from the friend list
                         </li>
                     </ul>
-                <p>Home page : including a welcome message and a pet of the week section</p>
-                <p>About page : short description of the web application and short description of founders with pictures</p>
-                <p>Contact page : feedback form for the general user of the website</p>
-                Login page :
-                <ul>
-                    <li>
-                        remember me : stores the credentials so that the user won’t have to re-enter them the next time
-                        he
-                        visits
-                    </li>
-                    <li>
-                        login : finalizes the login action, logging the user if the credentials are correct and then
-                        redirects the user to the main page
-                    </li>
-                    <li>
-                        create account : redirects to a sign up page
-                    </li>
-                </ul>
-                Register Page :
-                <ul>
-                    <li>
-                        create account : creates the user account if the information entered is valid and then redirects
-                        to the dashboard page, the user has the possibility of choosing an avatar for his/her account
-                    </li>
-                </ul>
-                Dashboard page :
-                <ul>
-                    <li>
-                        view pet : opens a pop-up/spoiler dedicated to this specific pet.
-                    </li>
-                    <li>
-                        edit pet : opens a pop-up/spoiler dedicated to editing the data/information of this specific pet.
-                    </li>
-                    <li>
-                        remove pet : removes a pet from your list.
-                    </li>
-                    <li>
-                        Sidebar with the following utilities :
-                        <ul>
-                            <li>
-                                add pet : adds a section to the users' dashboard dedicated to your new pet, 
-                                that the user can edit afterwards 
-                            </li>
-                            <li>
-                                account settings : opens a page dedicated to modifying a users' information/login data.
-                            </li>
-                        </ul> 
-                    </li>
-                </ul>
             </section>
             <section>
                 <h4>2.3 User Classes and Characteristics</h4>
                 <ul>
                     <li>
-                        Guest : simple viewer of the website
+                        Guest : simple viewer of the website, has no functionalities other than being able to view the "Contact", "About", "Home" pages and the ability to create an account
                     </li>
                     <li>
-                        User : user with an associated account that can 
-                    </li>
-                    <li>
-                        Admin : has access to all the messages from the feedback form and 
-                        has the option of deleting certain information of an account
+                        User : user with an associated account that has all the functionalities mentioned in the previous section, tied their account
                     </li>
                 </ul>
             </section>
             <section>
                 <h4>2.4 Operating Environment</h4>
                 <p>
-                    The website can be accessed from any device with a connection to the Internet and a web browser
-                    installed.
+                    The website can be accessed from any device with a connection to the Internet and a web browser installed.
                 </p>
             </section>
             <section>
                 <h4>2.5 Design and Implementation Constraints</h4>
                 <p>
-                    Pet Smart Manager will be developed in php, html, css and eventually javascript.
+                    Pet Smart Manager is being developed using HTML, CSS, PHP, SQLite and JavaScript.
                 </p>
             </section>
         </section>
@@ -231,32 +163,37 @@
                 <section>
                     <figure typeof="sa:image">
                         <figcaption>Pet Smart Manager's Home page</figcaption>
-                        <img src="screenshots/snapshot_homepage.png" alt="main page screenshot" width="50%">
+                        <img src="screenshots/Homepage.png" alt="main page screenshot" width="50%">
                     </figure>
 
                     <figure typeof="sa:image">
                         <figcaption>Pet Smart Manager's About page</figcaption>
-                        <img src="screenshots/snapshot_about.png" alt="about page screenshot" width="50%">
+                        <img src="screenshots/About.png" alt="about page screenshot" width="50%">
                     </figure>
                     
                     <figure typeof="sa:image">
                         <figcaption>Pet Smart Manager's Contact page</figcaption>
-                        <img src="screenshots/snapshot_contact.png" alt="contact page screenshot" width="50%">
+                        <img src="screenshots/Contact.png" alt="contact page screenshot" width="50%">
                     </figure>
 
                     <figure typeof="sa:image">
                         <figcaption>Pet Smart Manager's Login page</figcaption>
-                        <img src="screenshots/snapshot_login.png" alt="login page screenshot" width="50%">
+                        <img src="screenshots/Login.png" alt="login page screenshot" width="50%">
                     </figure>
 
                     <figure typeof="sa:image">
                         <figcaption>Pet Smart Manager's Register page</figcaption>
-                        <img src="screenshots/snapshot_register.png" alt="register page screenshot" width="50%">
+                        <img src="screenshots/Register.png" alt="register page screenshot" width="50%">
                     </figure>
 
                     <figure typeof="sa:image">
                         <figcaption>Pet Smart Managerr's Dashboard page</figcaption>
-                        <img src="screenshots/snapshot_dashboard.png" alt="Dashboard page screenshot" width="70%">
+                        <img src="screenshots/Dashboard.png" alt="Dashboard page screenshot" width="70%">
+                    </figure>
+
+                    <figure typeof="sa:image">
+                        <figcaption>Pet Smart Managerr's Pet Profile page</figcaption>
+                        <img src="screenshots/PetProfile.png" alt="Dashboard page screenshot" width="70%">
                     </figure>
                 </section>
             </section>
@@ -277,17 +214,56 @@
         <section>
             <h3>4. System Features</h3>
             <section>
-                <h4>4.1 Home Page</h4>
-                <p>
-                    Guests and users can read our welcome message and can see the pet of the week.
-                </p>
+                <h4>4.1 Home</h4>
+                <ul>
+                    <li>
+                        home: displays the home page of the website
+                    </li>
+                    <li>
+                        about: displays the about page of the website
+                    </li>
+                    <li>
+                        contact us: displays the contact page of the website
+                    </li>
+                    <li>
+                        register: opens up a pop-up window where the user can register for an account - it's only available if the user is not logged in
+                    </li>
+                    <li>
+                        login: opens up a pop-up window where the user can login to an account - it's only available if the user is not logged in
+                    </li>
+                    <li>
+                        dashboard: displays the dashboard page of the website - it's only available if the user is logged in
+                    </li>
+                </ul>
             </section>
             <section>
-                <h4>4.2 Login Page</h4>
-                <p>
-                    Users of the app can login by entering their credentials and therefore access other functionalities
-                    of the app.
-                </p>
+                <h4>4.2 Dashboard</h4>
+                <ul>
+                    <li>
+                        home: displays the home page of the website
+                    </li>
+                    <li>
+                        about: displays the about page of the website
+                    </li>
+                    <li>
+                        contact us: displays the contact page of the website
+                    </li>
+                    <li>
+                        log out: logs the user out of the account and returns them to the home page
+                    </li>
+                    <li>
+                        add a pet: opens up a pop-up window where the user can add a pet to the account
+                    </li>
+                    <li>
+                        add a pet -> name: allows the user to enter the name of the pet
+                    </li>
+                    <li>
+                        add a pet -> browse: allows the user to browse for a picture of the pet
+                    </li>
+                    <li>
+                        click on the picture: opens the profile of the pet
+                    </li>
+                </ul>
             </section>
             <section>
                 <h4>4.3 Register page</h4>
@@ -305,28 +281,19 @@
             <section>
                 <h4>4.5 Contact page</h4>
                 <p>
-                    Users can send a feedback to the administrators of the website. The feedback consists in sending an image attachment
-                    or a message to the administrators.
+                    Users can send a feedback to the administrators of the website. The feedback consists in sending a message to the administrators.
                 </p>
             </section>
             <section>
                 <h4>4.6 Dashboard page</h4>
                 <p>
-                    Users can add a pet to their account, edit the information about a certain pet, remove a pet,
-                    view all the pet information, and manage thier account.
+                    Users can add a pet to their account and going to their profile.
                 </p>
-            </section>
-            <section>
-                <h4>4.7 Admin page</h4>
+                <h4>4.7 Pet Profile page</h4>
                 <p>
-                    The admin can login into the app by entering his credentials and then be redirected to the admin
-                    page where he can manage users or see the feedback massages.
-                </p>
-            </section>
-            <section>
-                <h4>4.8 Terms and Conditions page</h4>
-                <p>
-                    Users can read the terms and conditions of using the website by navigating to this page.
+                    Users can delete their pet's profile, add friends of their pet, see all his friends, add/see pet's restrictions, add/see pet's medical history,
+                    add an event in the calendar(Life Event, Medical Event, Feeding Event, Other Event), <br> delete an event from the calendar, upload photos, audios, videos of their pets,
+                    sharing on Twitter the events of the pet, xml button that shows the life events of that pet.
                 </p>
             </section>
         </section>
@@ -334,13 +301,13 @@
             <h3>5. Other Nonfunctional Requirements</h3>
             <section>
                 <h4>5.1 Safety Requirements</h4>
-                <p> The team will be working on Pet Smart Manager regularly to ensure that none of the user's data are at risk of loss
+                <p> The team will be working on Pet Smart Manager regularly to ensure that none of the user's data are at risk of loss.
                 </p>
             </section>
             <section>
                 <h4>5.2 Security Requirements</h4>
                 <p>
-                    Pet Smart Mannager doesn't have any security requirements.
+                    The accounts created on our page are stored in a database, the password are hashed. Our site is preventing any attack of SQL injection and cross-site scripting(XSS).
                 </p>
             </section>
             <section>
@@ -360,33 +327,27 @@
                 <ul>
                     <li>Site design projection</li>
                     <li>Overall site design structure</li>
-                    <li>About page</li>
-                    <li>Home page</li>
-                    <li>Login page</li>
-                    <li>Register page</li>
-                    <li>Admin page</li>
-                    <li>Documentation</li>
-                </ul>
-                <h4>Sarghe Andrei-Vlad:</h4>
-                <ul>
-                    <li>Site design projection</li>
-                    <li>Overall site design structure</li>
-                    <li>Home page</li>
-                    <li>Contact page</li>
-                    <li>Login page</li>
-                    <li>Register page</li>
-                    <li>Admin page</li>
+                    <li>Functionality - Register</li>
+                    <li>Functionality - LogIn</li>
+                    <li>Functionality - LogOut</li>
+                    <li>Functionality - See Info of restrictions and medical history</li>
+                    <li>Functionality - Delete a pet</li>
+                    <li>Functionality - Sharing life events of a pet on Twitter</li>
+                    <li>Responsivene Design - About, Contact Us</li>
                     <li>Documentation</li>
                 </ul>
                 <h4>Tudor Cezar:</h4>
                 <ul>
                     <li>Site design projection</li>
                     <li>Overall site design structure</li>
-                    <li>Dashboard page</li>
-                    <li>Home page</li>
-                    <li>Admin page</li>
-                    <li>Login page</li>
-                    <li>Register page</li>
+                    <li>Functionality - Add a pet</li>
+                    <li>Functionality - Add event to calendar</li>
+                    <li>Functionality - Delete event from calendar</li>
+                    <li>Functionality - Display pets on the dashboard</li>
+                    <li>Functionality - Add pet to friend list</li>
+                    <li>Functionality - Remove pet from friend list</li>
+                    <li>Functionality - Upload section for audio, video and images</li>
+                    <li>Responsivene Design - Dashboard, Home, Pet Profile</li>
                     <li>Documentation</li>
                 </ul>
             </section>
