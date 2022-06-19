@@ -165,8 +165,15 @@
                               ':image' => file_get_contents($_FILES["file"]["tmp_name"])
                            ));
                         }}
-                  $statement = $pdo->query("SELECT * FROM Pets WHERE owner = '".$_SESSION['login_user']."'");
-                  while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+                  $statement = $pdo->prepare(
+                      "SELECT * FROM Pets WHERE owner = :user_id"
+                  );
+                  $statement->execute([
+                      ":user_id" => $_SESSION['login_user']
+                  ]);
+                  $result = $statement->fetchAll();
+                  foreach($result as $row)
+                  {
                      echo '<div class="pet__item">';
                      echo '<a href="petProfile.php?value='.$row['petname'].'&amp;user='.$_SESSION['login_user'].'"><img src="data:image/png;base64,' . base64_encode($row['image']) . '" class="display-image" class="display-image2" alt="image of pet"></a>';
                      echo '<p class="pet__name">'.$row['petname'].'</p>';

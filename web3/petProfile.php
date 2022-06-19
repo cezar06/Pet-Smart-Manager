@@ -74,7 +74,6 @@ if (!empty($_POST["deletefile"]) && is_array($_POST["deletefile"])) {
     echo "<script>console.log('aaaa')</script>";
     foreach ($_POST["deletefile"] as $id => $file) {
         unlink("uploads/$id");
-        //echo script console log
         echo "<script>console.log('$file deleted')</script>";
     }
     header("Refresh:0");
@@ -313,9 +312,11 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
         <div class="profile-details">
                     <div class="col1">
                         <?php
-                        $statement = $pdo->query(
-                            "SELECT * FROM Pets WHERE petname = '$pet_id'"
+                        $statement = $pdo->prepare(
+                            "SELECT * FROM Pets WHERE petname = :pet_id"
                         );
+                        $statement->bindValue(":pet_id", $pet_id);
+                        $statement->execute();
                         $row = $statement->fetch();
                         echo '<img src="data:image/png;base64,' .
                             base64_encode($row["image"]) .
@@ -364,9 +365,14 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
                                 <img src="images/Feed-icon.svg.png" style="width: 25px;" alt="rss-icon">
                             </a>
                             <?php   //sharing to twitter
-                                $statement = $pdo->query(
-                                    "SELECT * FROM Calendar WHERE petname = '$pet_id' AND username = '" .$_GET["user"]. "' AND type = 'Life Event'"
+                                $statement = $pdo->prepare(
+                                    "SELECT * FROM Calendar WHERE petname = :petname AND username = :username AND type = :type"
                                 );
+                                $statement->execute([
+                                    ":petname" => $pet_id,
+                                    ":username" => $_GET['user'],
+                                    ":type" => "Life Event",
+                                ]);    
                                 $message="I would like to share with you these events of my pet," .$_GET["value"]. "!  ";
                                 while ($row = $statement ->fetch(PDO::FETCH_ASSOC)){
                                     $message .= $row['text'] . ": ";
@@ -566,8 +572,15 @@ file_put_contents("rss.xml", $str);
                                         ));
                                     }
                                 }
-                                $statement = $pdo->query("SELECT * FROM Restrictions WHERE username = '" .$_GET["user"]. "'AND petname ='" .$_GET["value"]. "'" );
-                                while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+                                $statement = $pdo->prepare(
+                                    "SELECT * FROM Restrictions WHERE username = :user_name AND petname = :pet_name"
+                                );
+                                $statement -> execute([
+                                    ":user_name" => $_GET["user"],
+                                    ":pet_name" => $_GET["value"]
+                                ]);
+                                $result = $statement->fetchAll();
+                                foreach ($result as $row) {
                                     echo '<p>'.htmlspecialchars($row['restriction']).' </p>';
                                     echo '<button type ="submit" style = "float: right; "name ="delete2[' .$row['restriction'].
                                     ']">Delete</button><br / >';
@@ -580,12 +593,20 @@ file_put_contents("rss.xml", $str);
                     <h3>Medical History</h3>
                     <?php
                         $pdo = new PDO('sqlite:database.db');
-                        $statement = $pdo->query("SELECT * FROM Calendar WHERE username = '" .$_GET["user"]. "'AND petname ='" .$_GET["value"]. "' AND type = 'Medical'" );
-                        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+                        $statement = $pdo->prepare(
+                            "SELECT * FROM Calendar WHERE username = :user_name AND petname = :pet_name AND type = :type"
+                        );
+                        $statement -> execute([
+                            ":user_name" => $_GET["user"],
+                            ":pet_name" => $_GET["value"],
+                            ":type" => "Medical"
+                        ]);
+                        $result = $statement->fetchAll();
+                        foreach ($result as $row) {
                             echo '<p>'.$row['text'].' </p>';
-                            echo '<p>'.$row['day'].'-</p>';
-                            echo '<p>'.$row['month'].'-</p>';
-                            echo '<p>'.$row['year'].'</p> <br / >';
+                             echo '<p>'.$row['day'].'-</p>';
+                             echo '<p>'.$row['month'].'-</p>';
+                             echo '<p>'.$row['year'].'</p> <br / >';
                         }
                     ?>
                 </div>
