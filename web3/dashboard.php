@@ -13,10 +13,7 @@
         type = "image/x-icon">
     <link rel="stylesheet" href="stylesAll.css" />
     <link rel="stylesheet" href="styles_dashboard.css" />
-    <script
-      src="https://kit.fontawesome.com/adab9891dd.js"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,7 +25,7 @@
       <!--Navbar-->
       <nav class="navbar">
          <div class="navbar__container">
-            <a class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+            <a class="navbar__logo"> <i class="fas fa-cat"></i>PSM </a>
             <div class="navbar__toggle" id="mobile-menu">
                <span class="bar"></span>
                <span class="bar"></span>
@@ -147,7 +144,7 @@
       <div class="LogIn-modal">
          <div class="modal-content">
             <div class="close" id = "close">+</div>
-            <a class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+            <a class="navbar__logo"> <i class="fas fa-cat"></i>PSM </a>
             <form action="controller.php" method="post"> 
                <p><label for="username">Username:</label>
                      <input type="text" name="username" id="username" size="20" 
@@ -164,7 +161,7 @@
       <div class="Register-modal">
          <div class="Remodal-content">
           <div class="close" id = "close2">+</div>
-          <a class="navbar__logo"> <i class="fa-solid fa-cat"></i>PSM </a>
+          <a class="navbar__logo"> <i class="fas fa-cat"></i>PSM </a>
               <form method="post" enctype='multipart/form-data'>
                 <p><label for="username">Username:</label>
                       <input type="text" name="username" id="Regiusername" size="20" 
