@@ -105,17 +105,19 @@ if (!empty($_POST["deletefile"]) && is_array($_POST["deletefile"])) {
                 }
             }
             if (!empty($_FILES["file"]["tmp_name"])){
-                $statement = $pdo->prepare("UPDATE Pets SET petname = :petname, image = :image WHERE owner = :owner");
+                $statement = $pdo->prepare("UPDATE Pets SET petname = :petname, image = :image WHERE owner = :owner AND petname = :currentpet");
                 $statement->execute(array(
                     ':owner' => $_SESSION['login_user'],
+                    ':currentpet' => $_GET['value'],
                     ':petname' => $_POST['pettnameform'],
                     ':image' => file_get_contents($_FILES["file"]["tmp_name"])
                 ));
             }
             else{
-                $statement = $pdo->prepare("UPDATE Pets SET petname = :petname WHERE owner = :owner");
+                $statement = $pdo->prepare("UPDATE Pets SET petname = :petname WHERE owner = :owner AND petname = :currentpet");
                 $statement->execute(array(
                     ':owner' => $_SESSION['login_user'],
+                    ':currentpet' => $_GET['value'],
                     ':petname' => $_POST['pettnameform']
                 ));
             }
