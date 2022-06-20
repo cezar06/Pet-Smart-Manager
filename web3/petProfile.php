@@ -380,7 +380,7 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
                             base64_encode($row["image"]) .
                             '" class="pd-image" alt="pet-image">';
                         ?>
-                            <?php echo "<h3>" . $pet_id . "</h3>"; ?>
+                            <?php echo "<h3>" . htmlspecialchars($pet_id) . "</h3>"; ?>
                             <button name = "editPet" id="edit-pet">Edit</button>
                             <form method = "post">
                                 <button type ="submit" name ="deletePet">Delete</button>
