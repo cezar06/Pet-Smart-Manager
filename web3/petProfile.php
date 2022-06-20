@@ -79,6 +79,64 @@ if (!empty($_POST["deletefile"]) && is_array($_POST["deletefile"])) {
     header("Refresh:0");
 }
 
+    if(isset($_POST['finaledit']))
+        {  
+            $dir = scandir('uploads/');
+            function debug_to_console($data) {
+                $output = $data;
+                if (is_array($output))
+                    $output = implode(',', $output);
+            
+                echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+            }
+            foreach ($dir as $file){
+                $name = basename($file);
+                $check_name = "." .$_SESSION['login_user']. "-" ."$_GET[value]";
+                //debug_to_console($check_name);
+                if (strpos($name,$check_name) !== false){
+                    $new_name = str_replace("$_GET[value]",$_POST['pettnameform'],$name);
+                    $new_new_name= 'uploads/' . $name;
+                    $new_name_path= 'uploads/' .$new_name;
+                    if(rename($new_new_name,$new_name_path)){
+                        debug_to_console("Files renamed sucessfully");
+                    }else{
+                        debug_to_console("Files could not be renamed");
+                    }
+                }
+            }
+            if (!empty($_FILES["file"]["tmp_name"])){
+                $statement = $pdo->prepare("UPDATE Pets SET petname = :petname, image = :image WHERE owner = :owner");
+                $statement->execute(array(
+                    ':owner' => $_SESSION['login_user'],
+                    ':petname' => $_POST['pettnameform'],
+                    ':image' => file_get_contents($_FILES["file"]["tmp_name"])
+                ));
+            }
+            else{
+                $statement = $pdo->prepare("UPDATE Pets SET petname = :petname WHERE owner = :owner");
+                $statement->execute(array(
+                    ':owner' => $_SESSION['login_user'],
+                    ':petname' => $_POST['pettnameform']
+                ));
+            }
+            $statement = $pdo->prepare("UPDATE Friends SET pet1 = :petname WHERE user1 = :owner");
+            $statement->execute(array(
+                ':owner' => $_SESSION['login_user'],
+                ':petname' => $_POST['pettnameform']
+            ));
+            $statement = $pdo->prepare("UPDATE Calendar SET petname = :petname WHERE username = :owner");
+            $statement->execute(array(
+                ':owner' => $_SESSION['login_user'],
+                ':petname' => $_POST['pettnameform']
+            ));
+            $statement = $pdo->prepare("UPDATE Restrictions SET petname = :petname WHERE username = :owner");
+            $statement->execute(array(
+                ':owner' => $_SESSION['login_user'],
+                ':petname' => $_POST['pettnameform']
+            ));
+            header("location: dashboard.php");
+    }
+               
 if (isset($_POST["send-event"])) {
     $year = date("Y", strtotime($_POST["event-date"]));
     $month = date("m", strtotime($_POST["event-date"]));
@@ -323,10 +381,31 @@ for ($day = 1; $day <= $day_count; $day++, $str++) {
                             '" class="pd-image" alt="pet-image">';
                         ?>
                             <?php echo "<h3>" . $pet_id . "</h3>"; ?>
+                            <button name = "editPet" id="edit-pet">Edit</button>
                             <form method = "post">
                                 <button type ="submit" name ="deletePet">Delete</button>
                                 <?php
                                     if (isset($_POST["deletePet"])){
+                                        function debug_to_console($data) {
+                                            $output = $data;
+                                            if (is_array($output))
+                                                $output = implode(',', $output);
+                                        
+                                            echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+                                        }
+                                        $dir = scandir('uploads/');
+                                        foreach ($dir as $file){
+                                            $name = basename($file);
+                                            $check_name = "." .$_SESSION['login_user']. "-" ."$_GET[value]";
+                                            if (strpos($name,$check_name) !== false){
+                                                $new_name_path= 'uploads/' .$name;
+                                                if (unlink($new_name_path)){
+                                                    debug_to_console("Files removed");
+                                                }else{
+                                                    debug_to_console("Files could not be removed");
+                                                }
+                                            }
+                                        }
                                         $statement = $pdo->prepare(
                                             "DELETE FROM Pets WHERE owner = :username AND petname = :petname"
                                         );
@@ -538,6 +617,25 @@ file_put_contents("rss.xml", $str);
             </form>
          </div>
       </div>
+      
+      <div class="edit-modal">
+         <div class="edit-content">
+            <div class="close" id = "close2">+</div>
+            <p class="simple-text">Edit pet!</p>
+            <form method="post" enctype='multipart/form-data'>
+               <input id="nume" type="text" placeholder="Name" name="pettnameform" required/><br />
+               <input
+                  id="imagine"
+                  type="file"
+                  accept="image/*"
+                  name="file"
+                  />
+                  <?php 
+                  ?>
+               <input type="submit" name="finaledit" value="Edit" />
+            </form>
+         </div>
+      </div>
 
       <div class="Info">
          <div class="Info-content">
@@ -611,45 +709,6 @@ file_put_contents("rss.xml", $str);
                     ?>
                 </div>
             </div>
-         </div>
-      </div>
-    <?php  ?>
-      <div class="LogIn-modal">
-         <div class="modal-content">
-            <div class="close" id = "close">+</div>
-            <a class="navbar__logo"> <i class="fas fa-cat"></i>PSM </a>
-            <form action="controller.php" method="post"> 
-               <p><label for="username">Username:</label>
-                     <input type="text" name="username" id="username" size="20" 
-                     placeholder="Provide an username:" required/></p>
-               <p><label for="password">Password:</label> 
-                     <input type="password" name="password" id="password" size="20"
-                     placeholder="Password" required/></p>
-               <p><input type="submit" name ="submit" value="Log In"
-                  title="Apasati butonul pentru a expedia datele spre server" /></p>
-            </form> 
-         </div>
-      </div>
-
-      <div class="Register-modal">
-         <div class="Remodal-content">
-          <div class="close" id = "close2">+</div>
-          <a class="navbar__logo"> <i class="fas fa-cat"></i>PSM </a>
-              <form method="post" enctype='multipart/form-data'>
-                <p><label for="username">Username:</label>
-                      <input type="text" name="username" id="Regiusername" size="20" 
-                      placeholder="Provide an username:" required/></p>
-
-                <p><label for="password">Password:</label> 
-                      <input type="password" name="password" id="Regipassword" size="20"
-                      placeholder="Password" required/></p>
-
-                <p><label for="password">Retype password:</label> 
-                <input type="password" name="Repassword" id="ReRegipassword" size="20"
-                placeholder="Re-type password" required/></p>
-                <p><input type="submit" name ="submitRegister" value="Register"
-                    title="Apasati butonul pentru a expedia datele spre server" /></p>
-              </form>     
          </div>
       </div>
     
@@ -805,7 +864,17 @@ file_put_contents("rss.xml", $str);
          document.querySelector(".Info").style.display = "none";
          });
       </script>
-
+        <script>
+            var el = document.getElementById('edit-pet');
+            if (el){
+            document.getElementById("edit-pet").addEventListener("click", function () {
+            document.querySelector(".edit-modal").style.display = "flex";
+            });
+            document.getElementById("close2").addEventListener("click", function () {
+            document.querySelector(".edit-modal").style.display = "none";
+            });
+        }
+      </script>
       <script>
 document.querySelector(".close-friend").addEventListener("click", function () {
          document.querySelector(".add-friend-modal").style.display = "none";
